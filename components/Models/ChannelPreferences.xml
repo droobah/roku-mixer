@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ChannelPreferencesModel" extends="ContentNode">
+    <interface>
+        <field id="channel:slowchat" type="integer" />
+        <field id="channel:notify:directPurchaseMessage" type="string" />
+        <field id="channel:notify:subscribemessage" type="string" />
+        <field id="channel:notify:subscribe" type="bool" />
+        <field id="channel:notify:followmessage" type="string" />
+        <field id="channel:notify:follow" type="bool" />
+        <field id="channel:notify:hostedBy" type="string" />
+        <field id="channel:notify:autoHostedBy" type="string" />
+        <field id="channel:notify:hosting" type="string" />
+        <field id="channel:offline:autoplayVod" type="bool" />
+    </interface>
+</component>

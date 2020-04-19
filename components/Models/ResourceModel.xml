@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ResourceModel" extends="ContentNode">
+    <interface>
+        <field id="type" type="string" />
+        <field id="url" type="string" />
+        <field id="meta" type="assocarray" />
+    </interface>
+</component>

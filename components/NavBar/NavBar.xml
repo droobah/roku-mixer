@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="NavBar" extends="Group" initialFocus="ButtonsTargetList">
+    <children>
+        <Rectangle
+            id="Background"
+            width="1920"
+            height="84"
+            color="0x101010DD" />
+        <SimpleLabel
+            text="MIXER"
+            vertOrigin="center"
+            translation="[39, 42]" />
+        <TargetList
+            id="ButtonsTargetList"
+            itemComponentName="NavBarMenuItem"
+            duration="0.1"
+            opacity="0.5"
+            easeFunction="outExpo"
+            advanceKey="right"
+            reverseKey="left"
+            translation="[180, 18]" />
+        <Poster
+            id="Shadow"
+            uri="pkg:/images/header_dropshadow.png"
+            width="1920"
+            height="9"
+            translation="[0, 84]" />
+        <SimpleLabel
+            id="CalculateWidthLabel"
+            fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"
+            fontSize="32"
+            text=""
+            translation="[-400, -400]" />
+    </children>
+
+    <script type="text/brightscript" uri="NavBar.brs"/>
+    <script type="text/brightscript" uri="pkg:/source/Helpers.brs" />
+</component>

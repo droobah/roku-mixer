@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ChannelModel" extends="ContentNode">
+    <interface>
+        <field id="id" type="integer" />
+        <field id="userId" type="integer" />
+        <field id="token" type="string" />
+        <field id="online" type="bool" />
+        <field id="featured" type="bool" />
+        <field id="featureLevel" type="integer" />
+        <field id="partnered" type="bool" />
+        <field id="transcodingProfileId" type="integer" />
+        <field id="suspended" type="bool" />
+        <field id="name" type="string" />
+        <field id="audience" type="string" />
+        <field id="viewersTotal" type="integer" />
+        <field id="viewersCurrent" type="integer" />
+        <field id="numFollowers" type="integer" />
+        <field id="description" type="string" />
+        <field id="typeId" type="integer" />
+        <field id="interactive" type="bool" />
+        <field id="interactiveGameId" type="integer" />
+        <field id="ftl" type="integer" />
+        <field id="hasVod" type="bool" />
+        <field id="coverId" type="integer" />
+        <field id="thumbnailId" type="integer" />
+        <field id="badgeId" type="integer" />
+        <field id="bannerUrl" type="string" />
+        <field id="hosteeId" type="integer" />
+        <field id="hasTranscodes" type="bool" />
+        <field id="vodsEnabled" type="bool" />
+        <field id="costreamId" type="string" />
+
+        <field id="thumbnail" type="node" /> <!-- ResourceModel? -->
+        <field id="cover" type="node" /> <!-- ResourceModel? -->
+        <field id="badge" type="node" /> <!-- ResourceModel? -->
+        <field id="preferences" type="node" /> <!-- ChannelPreferencesModel? -->
+        <field id="user" type="node" /> <!-- UserModel? -->
+        <field id="gameType" type="node" /> <!-- GameTypeModel? -->
+    </interface>
+</component>

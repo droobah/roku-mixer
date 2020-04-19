@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="MediaInfoData" extends="ContentNode">
+    <interface>
+        <field id="mediaType" type="string" />
+        <field id="mediaId" type="string" />
+        <field id="channelName" type="string" />
+        <field id="playPosition" type="float" value="0.0" />
+    </interface>
+</component>

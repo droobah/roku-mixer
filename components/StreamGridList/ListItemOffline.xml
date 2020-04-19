@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ListItemOffline" extends="Group">
+    <interface>
+        <field id="width" type="float" onChange="WidthChanged" />
+        <field id="height" type="float" onChange="HeightChanged" />
+        <field id="content" type="node" onChange="ContentChanged" />
+    </interface>
+
+    <children>
+        <Label
+            id="Username"
+            text="" />
+    </children>
+
+    <script type="text/brightscript" uri="ListItemOffline.brs"/>
+</component>

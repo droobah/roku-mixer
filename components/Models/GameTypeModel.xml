@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="GameTypeModel" extends="ContentNode">
+    <interface>
+        <field id="id" type="integer" />
+        <field id="name" type="string" />
+        <field id="coverUrl" type="string" />
+        <field id="backgroundUrl" type="string" />
+
+        <field id="parent" type="string" />
+        <field id="description" type="string" />
+        <field id="source" type="string" />
+        <field id="viewersCurrent" type="integer" />
+        <field id="online" type="integer" />
+    </interface>
+</component>

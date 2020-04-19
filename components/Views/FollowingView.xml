@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="FollowingView" extends="Group">
+    <children>
+        <Label
+            text="FollwingView" />
+    </children>
+    <script type="text/brightscript" uri="FollowingView.brs"/>
+</component>

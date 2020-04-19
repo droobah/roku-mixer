@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="NavBarMenuItem" extends="Group">
+ 
+    <interface>
+        <field id="itemContent" type="node" />
+        <field id="currRect" type="rect2D" />
+        <field id="focusPercent" type="float" />
+        <field id="groupHasFocus" type="boolean" />
+        <field id="itemHasFocus" type="boolean" />
+    </interface>
+
+    <children>
+        <Poster
+            id="Background"
+            blendColor="0x2E2E2E"
+            uri="pkg:/images/header_button.9.png" />
+        <Poster
+            id="Icon"
+            width="30"
+            height="30"
+            opacity="0.4"
+            translation="[9, 9]" />
+        <SimpleLabel
+            id="Label"
+            fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"
+            fontSize="32"
+            vertOrigin="center"
+            opacity="0"
+            translation="[48, 24]" />
+    </children>
+
+    <script type="text/brightscript" uri="NavBarMenuItem.brs"/>
+</component>

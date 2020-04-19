@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="UserModel" extends="ContentNode">
+    <interface>
+        <field id="id" type="integer" />
+        <field id="level" type="integer" />
+        <field id="social" type="assocarray" />
+        <field id="username" type="string" />
+        <field id="email" type="string" />
+        <field id="verified" type="bool" />
+        <field id="experience" type="integer" />
+        <field id="sparks" type="integer" />
+        <field id="avatarUrl" type="string" />
+        <field id="bio" type="string" />
+        <field id="primaryTeam" type="integer" />
+
+        <field id="groups" type="array" />
+        <field id="channel" type="node" /> <!-- ChannelModel? -->
+    </interface>
+</component>

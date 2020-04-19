@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="RecordingModel" extends="ContentNode">
+    <interface>
+        <field id="id" type="integer" />
+        <field id="channelId" type="integer" />
+        <field id="state" type="string" />
+        <field id="viewsTotal" type="integer" />
+        <field id="expiresAt" type="time" />
+        <field id="vods" type="array" />
+        <field id="viewed" type="bool" />
+        <field id="name" type="string" />
+        <field id="typeId" type="integer" />
+        <field id="duration" type="integer" />
+        <field id="seen" type="bool" />
+        <field id="contentId" type="string" />
+    </interface>
+</component>
