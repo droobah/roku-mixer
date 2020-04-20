@@ -4,6 +4,7 @@ Sub Init()
     ' Dynamically switch between online and offline list item components
     ' as the MarkupGrid recycles/reuses while scrolling
 
+    m.top.opacity = 0.5
     m.listItemComponent = invalid
 End Sub
 
@@ -22,7 +23,6 @@ Sub HeightChanged(event as Object)
 End Sub
 
 Sub ContentChanged(event as Object)
-    ? "[ListItemWrapper] ContentChanged()"
     itemContent = event.getData()
 
     online = itemContent.online
@@ -35,12 +35,30 @@ Sub ContentChanged(event as Object)
         componentName = "ListItemOffline"
     end if
 
+    ' TODO: reuse same component (only update data) if the new content type is same as the old one
+
     m.listItemComponent = invalid
     m.top.removeChildrenIndex(m.top.getChildCount(), 0)
 
     m.listItemComponent = CreateObject("roSGNode", componentName)
+    m.listItemComponent.width = m.top.width
+    m.listItemComponent.height = m.top.height
     m.listItemComponent.content = itemContent
     m.top.appendChild(m.listItemComponent)
+End Sub
+
+Sub GridFocusChanged()
+  if not m.top.gridHasFocus and m.top.focusPercent > 0.0
+    m.top.opacity = 0.5
+  end if
+End Sub
+
+Sub ItemFocusChanged(event as Object)
+  hasFocus = event.getData()
+
+  if hasFocus
+    m.top.opacity = 1
+  end if
 End Sub
 
 Sub ShowFocus(event as Object)

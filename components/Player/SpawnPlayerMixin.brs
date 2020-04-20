@@ -1,0 +1,20 @@
+Sub PlayLiveStream(channelId as Integer)
+    m._player = CreateObject("roSGNode", "LivePlayer")
+    m._player.observeField("visible", "_OnPlayerVisibilityChange")
+    m.top.appendChild(m._player)
+    m._player.setFocus(true)
+    m._player.channelId = channelId
+End Sub
+
+Sub _OnPlayerVisibilityChange(event as Object)
+    isVisible = event.getData()
+
+    if isVisible = false
+        m.top.removeChild(m._player)
+        m._player = invalid
+        OnPlayerDestroyed()
+    end if
+End Sub
+
+Sub OnPlayerDestroyed()
+End Sub

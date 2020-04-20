@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="Router" extends="Group">
+    <children>
+         <LoadingIndicator
+            id="Spinner"
+            imageUri="pkg:/images/spinner.png"
+            spinInterval="1"
+            fadeInterval="0.2"
+            width="60"
+            height="60"
+            imageWidth="60"
+            centered="false"
+            backgroundOpacity="0"
+            control="start" />
+    </children>
     <script type="text/brightscript" uri="Router.brs"/>
 </component>

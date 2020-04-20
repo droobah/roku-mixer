@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="GameTypeModel" extends="ContentNode">
     <interface>
-        <field id="id" type="integer" />
+        <field id="model_id" type="integer" />
         <field id="name" type="string" />
         <field id="coverUrl" type="string" />
         <field id="backgroundUrl" type="string" />

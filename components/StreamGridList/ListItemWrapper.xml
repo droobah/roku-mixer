@@ -4,8 +4,8 @@
         <field id="width" type="float" onChange="WidthChanged" />
         <field id="height" type="float" onChange="HeightChanged" />
         <field id="itemContent" type="node" onChange="ContentChanged" />
-        <field id="gridHasFocus" type="boolean" />
-        <field id="itemHasFocus" type="boolean" />
+        <field id="gridHasFocus" type="boolean" onChange="GridFocusChanged" />
+        <field id="itemHasFocus" type="boolean" onChange="ItemFocusChanged" />
         <field id="focusPercent" type="float" onChange="ShowFocus" />
     </interface>
 

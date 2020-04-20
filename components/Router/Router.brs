@@ -46,6 +46,8 @@ Sub Init()
 
   m.screenStack = []
 
+  m.spinner = m.top.findNode("Spinner")
+
   m.top.observeField("focusedChild", "OnFocusedChildChange")
   m.global.observeFieldScoped("route", "onRouteChange")
   m.global.observeFieldScoped("routeBack", "goBackReceived")
@@ -123,11 +125,6 @@ Sub onRouteChange(event as Object)
 
   if route = invalid or route = "" then return
 
-  routeFocusOnContentLoad = true
-  ' if route.focus <> invalid and route.focus = false
-  '   routeFocusOnContentLoad = false
-  ' end if
-
   nonDuplicatePreviousRoute = true
   ' if route.nonDuplicatePreviousRoute <> invalid and route.nonDuplicatePreviousRoute = false
   '   nonDuplicatePreviousRoute = false
@@ -142,25 +139,29 @@ Sub onRouteChange(event as Object)
       route: route,
       matchingRoute: matchingRoute
     })
-    if routeFocusOnContentLoad = true
-      component.observeField("contentSet", "RouteContentSet")
-    end if
+    component.observeField("contentSet", "RouteContentSet")
     if matchingRoute.fullscreen = false
       component.translation = [0, 84]
+      m.spinner.translation = [1920 / 2 - m.spinner.width / 2, (1080 + 84) / 2 - m.spinner.height / 2]
+    else
+      m.spinner.translation = [1920 / 2 - m.spinner.width / 2, 1080 / 2 - m.spinner.height / 2]
     end if
 
     if m.screenStack.peek() <> invalid and m.screenStack.peek().route = route
       RemoveTop()
     end if
-    AddScreen(component, matchingRoute.topLevel, routeFocusOnContentLoad, nonDuplicatePreviousRoute)
+
+    m.spinner.control = "start"
+    AddScreen(component, matchingRoute.topLevel, nonDuplicatePreviousRoute)
   end if
 End Sub
 
 Sub RouteContentSet(msg as Object)
-  msg.getRoSGNode().setFocus(true)
+  m.spinner.control = "stop"
+  ' msg.getRoSGNode().setFocus(true)
 End Sub
 
-Sub AddScreen(node, topLevelNode, focus, nonDuplicatePreviousRoute)
+Sub AddScreen(node, topLevelNode, nonDuplicatePreviousRoute)
   if topLevelNode
     For i = m.screenStack.Count() - 1 To 0 Step -1
       RemoveScreen(m.screenStack.GetEntry(i), false, false)
@@ -176,11 +177,10 @@ Sub AddScreen(node, topLevelNode, focus, nonDuplicatePreviousRoute)
       end if
     end if
   end if
-  m.top.appendChild(node)
+  ' insert below loading spinner
+  m.top.insertChild(node, m.top.getChildCount() - 1)
   node.visible = true
-  if focus
-    node.setFocus(true)
-  end if
+  node.setFocus(true)
   m.screenStack.push(node)
 End Sub
 

@@ -4,12 +4,17 @@ Sub Init()
     m.markupGrid = m.top.findNode("MarkupGrid")
 
     m.top.observeField("focusedChild", "OnFocusedChildChange")
+    m.markupGrid.observeField("itemSelected", "OnItemSelected")
 End Sub
 
 Sub OnFocusedChildChange()
   if m.top.isInFocusChain()
     m.markupGrid.setFocus(true)
   end if
+End Sub
+
+Sub OnItemSelected(event as Object)
+    m.top.itemSelected = event.getData()
 End Sub
 
 Sub ConfigSet(event as Object)

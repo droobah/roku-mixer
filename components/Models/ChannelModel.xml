@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="ChannelModel" extends="ContentNode">
     <interface>
-        <field id="id" type="integer" />
+        <field id="model_id" type="integer" />
         <field id="userId" type="integer" />
         <field id="token" type="string" />
         <field id="online" type="bool" />
@@ -30,11 +30,14 @@
         <field id="vodsEnabled" type="bool" />
         <field id="costreamId" type="string" />
 
-        <field id="thumbnail" type="node" /> <!-- ResourceModel? -->
-        <field id="cover" type="node" /> <!-- ResourceModel? -->
-        <field id="badge" type="node" /> <!-- ResourceModel? -->
-        <field id="preferences" type="node" /> <!-- ChannelPreferencesModel? -->
-        <field id="user" type="node" /> <!-- UserModel? -->
-        <field id="gameType" type="node" /> <!-- GameTypeModel? -->
+        <field id="thumbnail" type="assocarray" /> <!-- ResourceModel? -->
+        <field id="cover" type="assocarray" /> <!-- ResourceModel? -->
+        <field id="badge" type="assocarray" /> <!-- ResourceModel? -->
+        <field id="preferences" type="assocarray" /> <!-- ChannelPreferencesModel? -->
+        <field id="user" type="assocarray" /> <!-- UserModel? -->
+        <field id="type" type="assocarray" /> <!-- GameTypeModel? -->
+
+        <field id="streamThumbnailSmall" type="string" />
+        <field id="streamThumbnailLarge" type="string" />
     </interface>
 </component>

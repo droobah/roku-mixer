@@ -13,7 +13,7 @@ Function CallTransformerFunction(functionName as String, content as String) as D
 End Function
 
 Function JsonTransformer(content as String) as Object
-    return PaRseJson(content)
+    return ParseJson(content)
 End Function
 
 Function GamesResponseTransformer(content as String) as Object
@@ -30,12 +30,12 @@ Function ChannelsResponseTransformer(content as String) as Object
     channelsNode = CreateObject("roSGNode", "ContentNode")
 
     for each item in json
+        item.model_id = item.id
+        item.Delete("id")
+
         channelNode = channelsNode.CreateChild("ChannelModel")
-
-        userNode = CreateObject("roSGNode", "UserModel")
-        userNode.setFields(item.user)
-        item.user = userNode
-
+        item.streamThumbnailSmall = "https://thumbs.mixer.com/channel/" + item.model_id.ToStr() + ".small.jpg"
+        item.streamThumbnailLarge = "https://thumbs.mixer.com/channel/" + item.model_id.ToStr() + ".big.jpg"
         channelNode.setFields(item)
     end for
 

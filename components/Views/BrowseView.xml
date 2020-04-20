@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="BrowseView" extends="Group">
+<component name="BrowseView" extends="BaseView">
     <children>
-        <Label
-            text="BrowseView" />
         <GridList
             id="BrowseGridList"
-            config="[1920, 3, 2]" />
+            config="[1776, 3, 2]"
+            translation="[72, 60]" />
         <FilterDrawer
             id="Drawer" />
     </children>
+
     <script type="text/brightscript" uri="BrowseView.brs"/>
-    <script type="text/brightscript" uri="pkg:/components/Network/RequestMixin.brs" />
 </component>

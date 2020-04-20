@@ -3,7 +3,7 @@
     <interface>
         <field id="config" type="array" onChange="ConfigSet" />
         <field id="content" type="node" alias="MarkupGrid.content" />
-        <field id="itemSelected" type="integer" />
+        <field id="itemSelected" type="integer" alwaysNotify="true" />
     </interface>
 
     <children>
@@ -11,11 +11,12 @@
             id="MarkupGrid"
             itemComponentName="ListItemWrapper"
             itemSize="[531, 462]"
-            itemSpacing="[42, 63]"
+            itemSpacing="[42, 81]"
             numColumns="3"
             numRows="2"
-            vertFocusAnimationStyle="floatingFocus"
+            vertFocusAnimationStyle="fixedFocus"
             scrollSpeed="5"
+            focusBitmapUri="pkg:/images/stream_gridlist_focus_thumbnail_$$RES$$.9.png"
             drawFocusFeedback="true" />
     </children>
 
