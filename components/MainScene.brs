@@ -23,6 +23,8 @@ Sub Init()
   m.top.appendChild(m.router)
   m.navBar = CreateObject("roSGNode", "NavBar")
   m.top.insertChild(m.navBar, 0)
+
+  m.top.signalBeacon("AppLaunchComplete")
 End Sub
 
 Sub ReInitialize()
