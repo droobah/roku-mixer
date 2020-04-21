@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="MultiPurposeTask" extends="Task">
+    <interface>
+        <field id="actions" type="array" />
+        <field id="response" type="array" />
+    </interface>
+
+    <script type="text/brightscript" uri="MultiPurposeTask.brs" />
+</component>
