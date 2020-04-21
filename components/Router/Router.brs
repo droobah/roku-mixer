@@ -31,6 +31,12 @@ Sub Init()
       topLevel: true,
     },
     {
+      path: "/login",
+      componentName: "LoginView",
+      fullscreen: true,
+      topLevel: false,
+    },
+    {
       path: "/stream/:token",
       componentName: "StreamView",
       fullscreen: true,

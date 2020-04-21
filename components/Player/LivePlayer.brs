@@ -2,10 +2,12 @@ Sub Init()
     ? "[LivePlayer] Init()"
 
     m.videoNode = m.top.findNode("VideoNode")
+    m.videoNode.enableTrickPlay = false
 
     m.videoContent = CreateObject("roSGNode", "ContentNode")
     m.videoContent.forwardQueryStringParams = false
     m.videoContent.streamFormat = "hls"
+    m.videoContent.live = true
 
     m.top.observeField("channelId", "ChannelIdSet")
     m.videoNode.observeField("state", "OnVideoStateChange")

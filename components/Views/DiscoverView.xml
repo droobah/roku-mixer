@@ -5,5 +5,4 @@
             text="DiscoverView" />
     </children>
     <script type="text/brightscript" uri="DiscoverView.brs"/>
-    <script type="text/brightscript" uri="pkg:/components/Network/RequestMixin.brs"/>
 </component>
