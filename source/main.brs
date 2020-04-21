@@ -5,10 +5,13 @@ End Sub
 Sub ShowMainScreen(args as Dynamic)
   ? "[main] ShowMainScreen()"
   screen = CreateObject("roSGScreen")
+  input = CreateObject("roInput")
+
   port = CreateObject("roMessagePort")
 
   scene = screen.CreateScene("MainScene")
   screen.setMessagePort(port)
+  input.setMessagePort(port)
 
   m.global = screen.getGlobalNode()
   ? "args= "; formatjson(args)      'pretty print AA'
@@ -27,6 +30,8 @@ Sub ShowMainScreen(args as Dynamic)
 
     if msgType = "roSGScreenEvent"
       if msg.isScreenClosed() then return
+    else if msgType = "roInputEvent" and msg.isInput()
+      m.global.deeplink = getDeepLinks(msg.getInfo())
     end if
   end while
 End Sub
