@@ -24,15 +24,19 @@ End Sub
 
 Sub ContentChanged(event as Object)
     itemContent = event.getData()
-
-    online = itemContent.online
-    if online = invalid
-        online = false
-    end if
-
     componentName = "ListItemLive"
-    if online = false
-        componentName = "ListItemOffline"
+
+    if itemContent.isLoaderItem <> invalid
+        componentName = "ListItemLoading"
+    else
+        online = itemContent.online
+        if online = invalid
+            online = false
+        end if
+
+        if online = false
+            componentName = "ListItemOffline"
+        end if
     end if
 
     ' TODO: reuse same component (only update data) if the new content type is same as the old one
@@ -43,7 +47,9 @@ Sub ContentChanged(event as Object)
     m.listItemComponent = CreateObject("roSGNode", componentName)
     m.listItemComponent.width = m.top.width
     m.listItemComponent.height = m.top.height
-    m.listItemComponent.content = itemContent
+    if componentName <> "ListItemLoading"
+        m.listItemComponent.content = itemContent
+    end if
     m.top.appendChild(m.listItemComponent)
 End Sub
 

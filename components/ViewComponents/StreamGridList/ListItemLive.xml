@@ -47,7 +47,11 @@
                     <Poster
                         id="AvatarPoster"
                         width="60"
-                        height="60" />
+                        height="60"
+                        loadDisplayMode="limitSize"
+                        loadWidth="60"
+                        loadHeight="60"
+                        uri="" />
                 </MaskGroup>
                 <LayoutGroup
                     layoutDirection="vert"

@@ -7,9 +7,48 @@
     </interface>
 
     <children>
-        <Label
-            id="Username"
-            text="" />
+        <LayoutGroup
+            layoutDirection="vert"
+            itemSpacings="[12, 3]"
+            translation="[0, 0]">
+            <Rectangle
+                id="BackgroundRectangle"
+                color="0x29374A">
+                <Rectangle
+                    width="94"
+                    height="36"
+                    color="0x000000CC"
+                    translation="[12, 12]">
+                    <SimpleLabel
+                        vertOrigin="center"
+                        fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"
+                        fontSize="24"
+                        color="0xEBEBEB"
+                        text="OFFLINE"
+                        translation="[6, 18]" />
+                </Rectangle>
+                <MaskGroup
+                    id="RoundedMaskGroup"
+                    maskUri="pkg:/images/circlemask_large.png">
+                    <Poster
+                        id="AvatarPoster"
+                        width="160"
+                        height="160"
+                        loadDisplayMode="limitSize"
+                        loadWidth="160"
+                        loadHeight="160"
+                        uri="" />
+                </MaskGroup>
+            </Rectangle>
+            <Label
+                id="UsernameLabel"
+                horizAlign="center"
+                wrap="true"
+                maxLines="2"
+                lineSpacing="-6">
+                <Font role="font" uri="pkg:/fonts/NotoSans-Regular.ttf" size="32" />
+            </Label>
+        </LayoutGroup>
     </children>
 
     <script type="text/brightscript" uri="ListItemOffline.brs"/>

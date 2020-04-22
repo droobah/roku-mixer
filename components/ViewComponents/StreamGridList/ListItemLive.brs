@@ -26,7 +26,6 @@ Sub WidthChanged(event as Object)
 End Sub
 
 Sub HeightChanged(event as Object)
-    height = event.getData()
 End Sub
 
 Sub ContentChanged(event as Object)
@@ -46,6 +45,8 @@ Sub ContentChanged(event as Object)
 
     if content.user <> invalid and content.user.avatarUrl <> invalid
         m.avatarPoster.uri = content.user.avatarUrl
+    else
+        m.avatarPoster.uri = "pkg:/images/default_avatar.png"
     end if
 End Sub
 

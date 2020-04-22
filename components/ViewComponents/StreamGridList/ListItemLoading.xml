@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ListItemLoading" extends="Group">
+    <interface>
+        <field id="width" type="float" onChange="WidthChanged" />
+        <field id="height" type="float" onChange="HeightChanged" />
+    </interface>
+
+    <children>
+        <LoadingIndicator
+            id="Spinner"
+            imageUri="pkg:/images/spinner.png"
+            spinInterval="1"
+            width="60"
+            height="60"
+            centered="false"
+            backgroundOpacity="0"
+            control="start" />
+    </children>
+
+    <script type="text/brightscript" uri="ListItemLoading.brs"/>
+</component>
