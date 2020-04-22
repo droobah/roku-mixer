@@ -22,7 +22,7 @@ done
 # Delete RALE from build
 find ${buildfolder} -name 'TrackerTask.xml' -delete
 
-# Delete RALE & all comment lines from source code
+# Delete RALE & all print lines from source code
 find ${buildfolder} -name '*.brs' |
     while read filename; do
         sed -Ei "s/^\s*\?.*//g" "$filename"
