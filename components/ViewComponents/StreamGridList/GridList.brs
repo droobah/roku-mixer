@@ -5,6 +5,7 @@ Sub Init()
 
     m.top.observeField("focusedChild", "OnFocusedChildChange")
     m.markupGrid.observeField("itemSelected", "OnItemSelected")
+    m.markupGrid.observeField("itemFocused", "OnItemFocused")
 End Sub
 
 Sub OnFocusedChildChange()
@@ -15,6 +16,10 @@ End Sub
 
 Sub OnItemSelected(event as Object)
     m.top.itemSelected = event.getData()
+End Sub
+
+Sub OnItemFocused(event as Object)
+    m.top.itemFocused = event.getData()
 End Sub
 
 Sub ConfigSet(event as Object)

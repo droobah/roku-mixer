@@ -5,6 +5,10 @@ Sub Init()
     m.audienceFilter = false
     m.languageFilter = false
     m.partnerFilter = false
+    m.page = 0
+
+
+    m.fetchingData = false
 
     m.drawer = m.top.findNode("Drawer")
     m.browseGridList = m.top.findNode("BrowseGridList")
@@ -14,6 +18,7 @@ Sub Init()
 
     m.top.observeField("focusedChild", "OnFocusedChildChange")
     m.browseGridList.observeField("itemSelected", "OnItemSelected")
+    m.browseGridList.observeField("itemFocused", "OnItemFocused")
 
     FetchData()
 End Sub
@@ -36,25 +41,43 @@ Sub OnItemSelected(event as Object)
     end if
 End Sub
 
+Sub OnItemFocused(event as Object)
+    index = event.getData()
+    isItemInLastRow = m.browseGridListContent.getChildCount() - index <= 3
+    if isItemInLastRow
+        FetchData()
+    end if
+End Sub
+
 Sub OnPlayerDestroyed()
     m.browseGridList.setFocus(true)
 End Sub
 
 Sub FetchData()
-    MakeGETRequest("https://mixer.com/api/v1/channels?limit=100&order=viewersCurrent:DESC", "ChannelsResponseTransformer", "FetchDataCallback")
+    if m.fetchingData then return
+
+    m.fetchingData = true
+    loaderItem = CreateObject("roSGNode", "ContentNode")
+    loaderItem.addField("isLoaderItem", "bool", false)
+    m.browseGridListContent.appendChild(loaderItem)
+    MakeGETRequest("https://mixer.com/api/v1/channels?limit=30&order=viewersCurrent:DESC&page=" + m.page.ToStr(), "ChannelsResponseTransformer", "FetchDataCallback")
 End Sub
 
 Sub FetchDataCallback(event as Object)
     response = event.getData()
 
     if response.transformedResponse <> invalid
+        ' remove loader item
+        m.browseGridListContent.removeChildIndex(m.browseGridListContent.getChildCount() - 1)
+
         responseItems = response.transformedResponse.getChildren(-1, 0)
         m.browseGridListContent.appendChildren(responseItems)
 
         m.top.contentSet = true
     end if
 
-    ? response.transformedResponse
+    m.page += 1
+    m.fetchingData = false
 End Sub
 
 Function onKeyEvent(key, press) as Boolean

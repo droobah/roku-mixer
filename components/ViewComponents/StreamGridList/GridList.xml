@@ -4,6 +4,7 @@
         <field id="config" type="array" onChange="ConfigSet" />
         <field id="content" type="node" alias="MarkupGrid.content" />
         <field id="itemSelected" type="integer" alwaysNotify="true" />
+        <field id="itemFocused" type="integer" />
     </interface>
 
     <children>
