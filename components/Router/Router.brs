@@ -145,7 +145,15 @@ Sub onRouteChange(event as Object)
       route: route,
       matchingRoute: matchingRoute
     })
-    component.observeField("contentSet", "RouteContentSet")
+
+    ' Set "contentSet = true" on the route view's Init() function
+    ' to show it immediately without the spinner.
+    ' Useful if your view doesn't interact with HTTP resources
+    if component.contentSet <> invalid and component.contentSet = false
+      component.observeField("contentSet", "RouteContentSet")
+      m.spinner.control = "start"
+    end if
+
     if matchingRoute.fullscreen = false
       component.translation = [0, 84]
       m.spinner.height = 1080 - 84
@@ -156,14 +164,12 @@ Sub onRouteChange(event as Object)
       RemoveTop()
     end if
 
-    m.spinner.control = "start"
     AddScreen(component, matchingRoute.topLevel, nonDuplicatePreviousRoute)
   end if
 End Sub
 
-Sub RouteContentSet(msg as Object)
+Sub RouteContentSet()
   m.spinner.control = "stop"
-  ' msg.getRoSGNode().setFocus(true)
 End Sub
 
 Sub AddScreen(node, topLevelNode, nonDuplicatePreviousRoute)
