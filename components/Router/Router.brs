@@ -148,9 +148,8 @@ Sub onRouteChange(event as Object)
     component.observeField("contentSet", "RouteContentSet")
     if matchingRoute.fullscreen = false
       component.translation = [0, 84]
-      m.spinner.translation = [1920 / 2 - m.spinner.width / 2, (1080 + 84) / 2 - m.spinner.height / 2]
-    else
-      m.spinner.translation = [1920 / 2 - m.spinner.width / 2, 1080 / 2 - m.spinner.height / 2]
+      m.spinner.height = 1080 - 84
+      m.spinner.translation = [0, 84]
     end if
 
     if m.screenStack.peek() <> invalid and m.screenStack.peek().route = route
