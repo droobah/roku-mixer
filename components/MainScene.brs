@@ -24,6 +24,12 @@ Sub Init()
   m.navBar = CreateObject("roSGNode", "NavBar")
   m.top.insertChild(m.navBar, 0)
 
+  m.changeLog = {
+    version: "",
+    lines: []
+  }
+  ShowChangelog()
+
   m.top.signalBeacon("AppLaunchComplete")
 End Sub
 
@@ -56,6 +62,46 @@ Sub ReInitialize()
     "videoPlaying": false,
     "defaultPage": ""
   })
+End Sub
+
+Sub ShowChangelog()
+  if m.changeLog = invalid then return
+
+  actions = [
+    {
+      name: "getmanifestversion"
+    },
+    {
+      name: "readregistry",
+      data: {
+        registry: "AppData",
+        key: "lastshownchangelogversion"
+      }
+    }
+  ]
+  StartMultiPurposeTask(actions, "OnChangelogMultiPurposeTaskResponse")
+End Sub
+
+Sub OnChangelogMultiPurposeTaskResponse(event as Object)
+  response = event.getData()
+
+  version = response[0]
+  lastShownChangelogVersion = response[1]
+
+  ' only show changelog once for a version
+  if lastShownChangelogVersion = invalid or lastShownChangelogVersion <> version
+    m.changelogNotification = CreateObject("roSGNode", "ChangelogNotification")
+    m.changelogNotification.content = m.changeLog
+    m.top.appendChild(m.changelogNotification)
+    StartMultiPurposeTask([{
+      name: "writeregistry",
+      data: {
+        registry: "AppData",
+        key: "lastshownchangelogversion",
+        value: version
+      }
+    }])
+  end if
 End Sub
 
 Function onKeyEvent(key, press) as Boolean

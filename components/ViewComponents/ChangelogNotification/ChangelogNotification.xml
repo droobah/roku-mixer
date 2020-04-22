@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ChangelogNotification" extends="Group">
+    <interface>
+        <field id="location" type="string" value="bottom_right" />
+        <field id="content" type="assocarray" onChange="OnContentSet" />
+    </interface>
+    <children>
+        <Rectangle
+            id="BackgroundRectangle"
+            color="0x000000">
+            <LayoutGroup
+                id="ContentContainer"
+                layoutDirection="vert"
+                itemSpacings="[6]">
+                <SimpleLabel
+                    id="TitleLabel"
+                    fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"
+                    fontSize="28" />
+                <Label
+                    id="LinesLabel"
+                    wrap="true"
+                    lineSpacing="0">
+                    <Font role="font" uri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf" size="24" />
+                </Label>
+            </LayoutGroup>
+            <Rectangle
+                id="HideCountdownBarRectangle"
+                height="6" />
+        </Rectangle>
+
+        <Animation
+            id="CountdownBarAnimation"
+            duration="10"
+            repeat="false"
+            easeFunction="linear">
+            <FloatFieldInterpolator
+                id="CountdownBarAnimationInterpolator"
+                key="[0.0, 1.0]"
+                fieldToInterp="HideCountdownBarRectangle.width" />
+        </Animation>
+
+        <Timer
+            id="NotificationHideTimer"
+            repeat="false"
+            duration="10" />
+    </children>
+    <script type="text/brightscript" uri="ChangelogNotification.brs" />
+</component>
