@@ -25,8 +25,10 @@ Sub Init()
   m.top.insertChild(m.navBar, 0)
 
   m.changeLog = {
-    version: "",
-    lines: []
+    version: "1.0.2",
+    lines: [
+      "- Browse infinite scroll"
+    ]
   }
   ShowChangelog()
 
