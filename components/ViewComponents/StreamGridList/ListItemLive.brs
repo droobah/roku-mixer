@@ -39,9 +39,15 @@ Sub ContentChanged(event as Object)
     if content.viewersCurrent <> invalid
         m.viewerCountLabel.text = "• " + content.viewersCurrent.ToStr()
         m.viewerCountWrapperRectangle.width = m.viewerCountLabel.boundingRect().width + 12
+    else
+        m.viewerCountLabel.text = ""
     end if
 
-    m.gameLabel.text = content.type.name
+    if content.type <> invalid
+        m.gameLabel.text = content.type.name
+    else
+        m.gameLabel.text = ""
+    end if
 
     if content.user <> invalid and content.user.avatarUrl <> invalid
         m.avatarPoster.uri = content.user.avatarUrl

@@ -39,18 +39,26 @@ Sub ContentChanged(event as Object)
         end if
     end if
 
-    ' TODO: reuse same component (only update data) if the new content type is same as the old one
+    ' reuse component, not destroying if it's same type as before and only updating data
+    reuseComponent = m.top.currentComponentName = componentName
 
-    m.listItemComponent = invalid
-    m.top.removeChildrenIndex(m.top.getChildCount(), 0)
+    if reuseComponent = false
+        m.listItemComponent = invalid
+        m.top.removeChildrenIndex(m.top.getChildCount(), 0)
+        m.listItemComponent = CreateObject("roSGNode", componentName)
+    end if
 
-    m.listItemComponent = CreateObject("roSGNode", componentName)
     m.listItemComponent.width = m.top.width
     m.listItemComponent.height = m.top.height
     if componentName <> "ListItemLoading"
         m.listItemComponent.content = itemContent
     end if
-    m.top.appendChild(m.listItemComponent)
+
+    if reuseComponent = false
+        m.top.appendChild(m.listItemComponent)
+    end if
+
+    m.top.currentComponentName = componentName
 End Sub
 
 Sub GridFocusChanged()
