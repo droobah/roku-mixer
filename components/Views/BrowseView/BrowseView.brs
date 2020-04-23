@@ -5,7 +5,10 @@ Sub Init()
     m.audienceFilter = false
     m.languageFilter = false
     m.partnerFilter = false
+
     m.page = 0
+    m.perPage = 30
+    m.canFetchData = true
 
 
     m.fetchingData = false
@@ -33,10 +36,7 @@ Sub OnItemSelected(event as Object)
     index = event.getData()
     item = m.browseGridListContent.getChild(index)
 
-    ? "ITEM SELECTED"; index
-
     if item <> invalid and item.model_id <> invalid
-        ? item.model_id; type(item.model_id)
         PlayLiveStream(item.model_id)
     end if
 End Sub
@@ -54,19 +54,21 @@ Sub OnPlayerDestroyed()
 End Sub
 
 Sub FetchData()
-    if m.fetchingData then return
+    if m.canFetchData = false or m.fetchingData then return
 
     m.fetchingData = true
     m.browseGridList.setLoading = true
-    MakeGETRequest("https://mixer.com/api/v1/channels?limit=30&order=viewersCurrent:DESC&page=" + m.page.ToStr(), "ChannelsResponseTransformer", "FetchDataCallback")
+    MakeGETRequest("https://mixer.com/api/v1/channels?limit=" + m.perPage.ToStr() + "&order=viewersCurrent:DESC&page=" + m.page.ToStr(), "ChannelsResponseTransformer", "FetchDataCallback")
 End Sub
 
 Sub FetchDataCallback(event as Object)
     m.browseGridList.setLoading = false
+    hasNextPage = true
     response = event.getData()
 
     if response.transformedResponse <> invalid
         responseItems = response.transformedResponse.getChildren(-1, 0)
+        if responseItems.Count() < m.perPage then hasNextPage = false
         m.browseGridListContent.appendChildren(responseItems)
 
         m.top.contentSet = true
@@ -74,6 +76,7 @@ Sub FetchDataCallback(event as Object)
 
     m.page += 1
     m.fetchingData = false
+    m.canFetchData = hasNextPage
 End Sub
 
 Function onKeyEvent(key, press) as Boolean

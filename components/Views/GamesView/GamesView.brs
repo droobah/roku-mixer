@@ -2,6 +2,8 @@ Sub Init()
     ? "[GamesView] Init()"
 
     m.page = 0
+    m.perPage = 30
+    m.canFetchData = true
     m.fetchingData = false
 
     m.drawer = m.top.findNode("Drawer")
@@ -27,11 +29,13 @@ Sub OnItemSelected(event as Object)
     index = event.getData()
     item = m.gamesGridListContent.getChild(index)
 
-    ? "ITEM SELECTED"; index
-
     if item <> invalid and item.model_id <> invalid
-        ? item.model_id; type(item.model_id)
-        PlayLiveStream(item.model_id)
+        m.global.routeWithExtra = {
+            route: "/game/" + item.model_id.ToStr(),
+            extra: {
+                modelData: item
+            }
+        }
     end if
 End Sub
 
@@ -43,25 +47,22 @@ Sub OnItemFocused(event as Object)
     end if
 End Sub
 
-Sub OnPlayerDestroyed()
-    m.gamesGridList.setFocus(true)
-End Sub
-
 Sub FetchData()
-    if m.fetchingData then return
+    if m.canFetchData = false or m.fetchingData then return
 
     m.fetchingData = true
     m.gamesGridList.setLoading = true
-    MakeGETRequest("https://mixer.com/api/v1/types?limit=30&order=viewersCurrent:DESC&noCount=true&page=" + m.page.ToStr(), "GamesResponseTransformer", "FetchDataCallback")
+    MakeGETRequest("https://mixer.com/api/v1/types?limit=" + m.perPage.ToStr() + "&order=viewersCurrent:DESC&page=" + m.page.ToStr(), "GamesResponseTransformer", "FetchDataCallback")
 End Sub
 
 Sub FetchDataCallback(event as Object)
     m.gamesGridList.setLoading = false
-
+    hasNextPage = true
     response = event.getData()
 
     if response.transformedResponse <> invalid
         responseItems = response.transformedResponse.getChildren(-1, 0)
+        if responseItems.Count() < m.perPage then hasNextPage = false
         m.gamesGridListContent.appendChildren(responseItems)
 
         m.top.contentSet = true
@@ -69,6 +70,7 @@ Sub FetchDataCallback(event as Object)
 
     m.page += 1
     m.fetchingData = false
+    m.canFetchData = hasNextPage
 End Sub
 
 Function onKeyEvent(key, press) as Boolean
