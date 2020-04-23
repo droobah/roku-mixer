@@ -37,6 +37,15 @@ Function ChannelsResponseTransformer(content as String) as Object
         item.streamThumbnailSmall = "https://thumbs.mixer.com/channel/" + item.model_id.ToStr() + ".small.jpg"
         item.streamThumbnailLarge = "https://thumbs.mixer.com/channel/" + item.model_id.ToStr() + ".big.jpg"
         channelNode.setFields(item)
+
+        ' Use EnhancedMarkupGrid
+        listItemComponentName = "ChannelItemLive"
+        if item.online = invalid or item.online = false
+            listItemComponentName = "ChannelItemOffline"
+        end if
+        channelNode.addFields({
+            dynamicComponentName: listItemComponentName
+        })
     end for
 
     return channelsNode

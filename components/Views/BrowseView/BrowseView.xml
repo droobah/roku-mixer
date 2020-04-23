@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="BrowseView" extends="BaseView">
+    <children>
+        <EnhancedMarkupGrid
+            id="BrowseGridList"
+            itemSize="[564, 462]"
+            itemSpacing="[42, 81]"
+            numColumns="3"
+            numRows="2"
+            vertFocusAnimationStyle="fixedFocus"
+            scrollSpeed="5"
+            focusBitmapUri="pkg:/images/stream_gridlist_focus_thumbnail_$$RES$$.9.png"
+            drawFocusFeedback="true"
+            translation="[72, 60]" />
+        <FilterDrawer
+            id="Drawer" />
+    </children>
+
+    <script type="text/brightscript" uri="BrowseView.brs"/>
+</component>

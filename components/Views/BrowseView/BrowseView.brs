@@ -57,19 +57,15 @@ Sub FetchData()
     if m.fetchingData then return
 
     m.fetchingData = true
-    loaderItem = CreateObject("roSGNode", "ContentNode")
-    loaderItem.addField("isLoaderItem", "bool", false)
-    m.browseGridListContent.appendChild(loaderItem)
+    m.browseGridList.setLoading = true
     MakeGETRequest("https://mixer.com/api/v1/channels?limit=30&order=viewersCurrent:DESC&page=" + m.page.ToStr(), "ChannelsResponseTransformer", "FetchDataCallback")
 End Sub
 
 Sub FetchDataCallback(event as Object)
+    m.browseGridList.setLoading = false
     response = event.getData()
 
     if response.transformedResponse <> invalid
-        ' remove loader item
-        m.browseGridListContent.removeChildIndex(m.browseGridListContent.getChildCount() - 1)
-
         responseItems = response.transformedResponse.getChildren(-1, 0)
         m.browseGridListContent.appendChildren(responseItems)
 

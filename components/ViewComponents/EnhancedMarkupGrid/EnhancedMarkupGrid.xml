@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="EnhancedMarkupGrid" extends="MarkupGrid">
+    <interface>
+        <field id="loaderComponentName" type="string" value="ListItemLoader" />
+
+        <field id="setLoading" type="bool" onChange="SetLoading" />
+    </interface>
+
+    <children>
+        <!-- <MarkupGrid
+            id="MarkupGrid"
+            itemSize="[531, 462]"
+            itemSpacing="[42, 81]"
+            numColumns="3"
+            numRows="2"
+            vertFocusAnimationStyle="fixedFocus"
+            scrollSpeed="5"
+            focusBitmapUri="pkg:/images/stream_gridlist_focus_thumbnail_$$RES$$.9.png"
+            drawFocusFeedback="true" /> -->
+    </children>
+
+    <script type="text/brightscript" uri="EnhancedMarkupGrid.brs"/>
+</component>

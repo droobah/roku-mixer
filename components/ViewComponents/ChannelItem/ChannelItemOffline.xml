@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="ListItemOffline" extends="Group">
+<component name="ChannelItemOffline" extends="Group">
     <interface>
         <field id="width" type="float" onChange="WidthChanged" />
         <field id="height" type="float" onChange="HeightChanged" />
-        <field id="content" type="node" onChange="ContentChanged" />
+        <field id="index" type="integer" />
+        <field id="itemContent" type="node" onChange="ContentChanged" />
+        <field id="gridHasFocus" type="boolean" onChange="GridFocusChanged" />
+        <field id="itemHasFocus" type="boolean" onChange="ItemFocusChanged" />
+        <field id="focusPercent" type="float" onChange="ShowFocus" />
     </interface>
 
     <children>
@@ -51,5 +55,5 @@
         </LayoutGroup>
     </children>
 
-    <script type="text/brightscript" uri="ListItemOffline.brs"/>
+    <script type="text/brightscript" uri="ChannelItemOffline.brs"/>
 </component>

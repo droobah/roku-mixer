@@ -1,5 +1,6 @@
 Sub Init()
-    ' ? "[ListItemOffline] Init()"
+    ' ? "[ChannelItemOffline] Init()"
+    m.top.opacity = 0.5
 
     m.backgroundRectangle = m.top.findNode("BackgroundRectangle")
     m.avatarPoster = m.top.findNode("AvatarPoster")
@@ -32,6 +33,27 @@ Sub ContentChanged(event as Object)
     else
         m.avatarPoster.uri = "pkg:/images/default_avatar.png"
     end if
+End Sub
+
+Sub GridFocusChanged()
+    if not m.top.gridHasFocus and m.top.focusPercent > 0.0
+        m.top.opacity = 0.5
+    end if
+End Sub
+
+Sub ItemFocusChanged(event as Object)
+    hasFocus = event.getData()
+
+    if hasFocus
+        m.top.opacity = 1
+    end if
+End Sub
+
+Sub ShowFocus(event as Object)
+    if not m.top.gridHasFocus then return
+
+    percent = event.getData()
+    m.top.opacity = percent / 2 + 0.5
 End Sub
 
 Function doScale(number as Integer, scaleFactor as Integer) as Integer

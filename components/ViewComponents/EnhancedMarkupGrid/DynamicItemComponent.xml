@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="DynamicItemComponent" extends="Group">
+    <interface>
+        <field id="width" type="float" onChange="ForwardEvent" />
+        <field id="height" type="float" onChange="ForwardEvent" />
+        <field id="index" type="float" onChange="ForwardEvent" />
+        <field id="gridHasFocus" type="boolean" onChange="ForwardEvent" />
+        <field id="itemContent" type="node" onChange="ItemContentChanged" />
+        <field id="focusPercent" type="float" onChange="ForwardEvent" />
+        <field id="itemHasFocus" type="boolean" onChange="ForwardEvent" />
+
+        <field id="currentComponentName" type="string" />
+    </interface>
+
+    <children>
+    </children>
+
+    <script type="text/brightscript" uri="DynamicItemComponent.brs"/>
+</component>

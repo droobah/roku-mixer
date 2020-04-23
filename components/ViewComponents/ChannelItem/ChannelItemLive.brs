@@ -1,5 +1,6 @@
 Sub Init()
-    ' ? "[ListItemLive] Init()"
+    ' ? "[ChannelItemLive] Init()"
+    m.top.opacity = 0.5
 
     m.thumbnailPoster = m.top.findNode("ThumbnailPoster")
     m.titleLabel = m.top.findNode("TitleLabel")
@@ -49,11 +50,32 @@ Sub ContentChanged(event as Object)
         m.gameLabel.text = ""
     end if
 
-    if content.user <> invalid and content.user.avatarUrl <> invalid
-        m.avatarPoster.uri = content.user.avatarUrl
-    else
+    if content.user = invalid or content.user.avatarUrl = invalid or content.user.avatarUrl = ""
         m.avatarPoster.uri = "pkg:/images/default_avatar.png"
+    else
+        m.avatarPoster.uri = content.user.avatarUrl
     end if
+End Sub
+
+Sub GridFocusChanged()
+    if not m.top.gridHasFocus and m.top.focusPercent > 0.0
+        m.top.opacity = 0.5
+    end if
+End Sub
+
+Sub ItemFocusChanged(event as Object)
+    hasFocus = event.getData()
+
+    if hasFocus
+        m.top.opacity = 1
+    end if
+End Sub
+
+Sub ShowFocus(event as Object)
+    if not m.top.gridHasFocus then return
+
+    percent = event.getData()
+    m.top.opacity = percent / 2 + 0.5
 End Sub
 
 Function doScale(number as Integer, scaleFactor as Integer) as Integer

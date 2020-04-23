@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="ListItemLoading" extends="Group">
+<component name="ListItemLoader" extends="Group">
     <interface>
         <field id="width" type="float" onChange="WidthChanged" />
-        <field id="height" type="float" onChange="HeightChanged" />
+        <field id="height" type="float" />
+        <field id="itemContent" type="node" />
     </interface>
 
     <children>
@@ -17,5 +18,5 @@
             control="start" />
     </children>
 
-    <script type="text/brightscript" uri="ListItemLoading.brs"/>
+    <script type="text/brightscript" uri="ListItemLoader.brs"/>
 </component>
