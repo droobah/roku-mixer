@@ -43,7 +43,7 @@ Sub Init()
       topLevel: false,
     },
     {
-      path: "/game/:id",
+      path: "/game/:gameId",
       componentName: "GameView",
       fullscreen: true,
       topLevel: false,
@@ -56,6 +56,7 @@ Sub Init()
 
   m.top.observeField("focusedChild", "OnFocusedChildChange")
   m.global.observeFieldScoped("route", "onRouteChange")
+  m.global.observeFieldScoped("routeWithExtra", "onRouteChange")
   m.global.observeFieldScoped("routeBack", "goBackReceived")
 End Sub
 
@@ -92,7 +93,7 @@ Function getMatchingRoute(routeName as String) as Object
       matching = true
       i = 0
       while matching = true and i <= routeParts.Count() - 1
-        if routeParts[i] <> ":"
+        if routeParts[i].Left(1) <> ":"
           if routeParts[i] <> userRouteParts[i]
             matching = false
           end if
@@ -118,7 +119,7 @@ Function mapComponentParams(route as String, matchingRoute as Object) as Object
     part = matchingRouteParts[i]
     if part.Left(1) = ":"
       paramName = part.Mid(1)
-      routeComponent[paramName] = route.path.Split("/")[i]
+      routeComponent[paramName] = matchingRoute.path.Split("/")[i]
     end if
   end for
   
@@ -127,6 +128,13 @@ End Function
 
 Sub onRouteChange(event as Object)
   route = event.getData()
+  routeExtraData = invalid
+
+  if type(route) = "roAssociativeArray"
+    routeExtraData = route.extra
+    route = route.route
+  end if
+
   ? "ROUTE CHANGE"; route
 
   if route = invalid or route = "" then return
@@ -145,6 +153,10 @@ Sub onRouteChange(event as Object)
       route: route,
       matchingRoute: matchingRoute
     })
+
+    if routeExtraData <> invalid and type(routeExtraData) = "roAssociativeArray"
+      component.setFields(routeExtraData)
+    end if
 
     ' Set "contentSet = true" on the route view's Init() function
     ' to show it immediately without the spinner.

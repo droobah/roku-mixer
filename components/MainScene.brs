@@ -9,6 +9,7 @@ Sub Init()
   m.global.addField("uriFetcher", "node", false)
   m.global.addField("auth", "node", false)
   m.global.addField("route", "string", true)
+  m.global.addField("routeWithExtra", "assocarray", true)
   m.global.addField("routeBack", "boolean", true)
   m.global.addField("currentRoute", "assocarray", true)
   m.global.addField("stopPlayer", "boolean", true)
@@ -57,6 +58,7 @@ Sub ReInitialize()
     "uriFetcher": m.uriFetcher,
     "auth": m.auth,
     "route": "",
+    "routeWithExtra": {},
     "routeBack": false,
     "currentRoute": {},
     "scaleFactor": scaleFactor,
