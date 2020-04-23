@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="GameView" extends="BaseView">
+    <interface>
+        <field id="gameId" type="string" />
+        <field id="modelData" type="node" onChange="OnModelSet" />
+    </interface>
+    <children>
+        <Rectangle
+            width="1920"
+            height="1080"
+            color="0x000000" />
+        <Poster
+            id="CoverPoster"
+            width="1920"
+            height="300"
+            loadWidth="960"
+            loadHeight="540"
+            loadDisplayMode="scaleToZoom"
+            uri=""
+            translation="[0, 0]" />
+        <Poster
+            id="GamePoster"
+            width="212"
+            height="212"
+            translation="[72, 44]" />
+        <SimpleLabel
+            id="NameLabel"
+            fontUri="pkg:/fonts/BarlowSemiCondensed-SemiBold.ttf"
+            fontSize="42"
+            translation="[314, 44]" />
+        <Label
+            id="DescriptionLabel"
+            width="1534"
+            wrap="true"
+            maxLines="4"
+            lineSpacing="0"
+            translation="[314, 128]">
+            <Font role="font" uri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf" size="26" />
+        </Label>
+        <EnhancedMarkupGrid
+            id="GameStreamsGridList"
+            itemSize="[564, 462]"
+            itemSpacing="[42, 81]"
+            numColumns="3"
+            numRows="2"
+            vertFocusAnimationStyle="fixedFocus"
+            scrollSpeed="5"
+            focusBitmapUri="pkg:/images/stream_gridlist_focus_thumbnail_$$RES$$.9.png"
+            drawFocusFeedback="true"
+            translation="[72, 330]" />
+        <FilterDrawer
+            id="Drawer" />
+    </children>
+
+    <script type="text/brightscript" uri="GameView.brs"/>
+</component>
