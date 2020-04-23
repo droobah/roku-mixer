@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="GamesView" extends="BaseView">
     <children>
-        <Label
-            text="GamesView" />
+        <EnhancedMarkupGrid
+            id="GamesGridList"
+            itemSize="[264, 350]"
+            itemSpacing="[32, 81]"
+            numColumns="6"
+            numRows="3"
+            vertFocusAnimationStyle="fixedFocus"
+            scrollSpeed="5"
+            drawFocusFeedback="true"
+            translation="[72, 60]" />
+        <FilterDrawer
+            id="Drawer" />
     </children>
+
     <script type="text/brightscript" uri="GamesView.brs"/>
 </component>

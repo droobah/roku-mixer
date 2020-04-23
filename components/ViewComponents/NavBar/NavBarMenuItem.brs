@@ -10,11 +10,9 @@ Sub Init()
 End Sub
 
 Sub ContentSet(event as Object)
-  ? "NavBarMenuItem itemContent changed"
   if event.getData().data = invalid then return
 
   itemData = event.getData().data
-  ? itemData
 
   m.label.text = itemData.title
 
@@ -47,8 +45,6 @@ End Sub
 
 Sub OnFocusPercentChange(event as Object)
   percent = event.getData()
-
-  ? "PERCENT"; percent
 
   m.background.blendColor = interpolateColor("0x2E2E2E", "0x505050", percent)
 

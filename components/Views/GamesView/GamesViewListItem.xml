@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="GamesViewListItem" extends="Group">
+    <interface>
+        <field id="width" type="float" onChange="WidthChanged" />
+        <field id="height" type="float" onChange="HeightChanged" />
+        <field id="index" type="integer" />
+        <field id="itemContent" type="node" onChange="ContentChanged" />
+        <field id="gridHasFocus" type="boolean" onChange="GridFocusChanged" />
+        <field id="itemHasFocus" type="boolean" onChange="ItemFocusChanged" />
+        <field id="focusPercent" type="float" onChange="ShowFocus" />
+    </interface>
+
+    <children>
+        <LayoutGroup
+            layoutDirection="vert"
+            itemSpacings="[6, 0]">
+            <Poster
+                id="ThumbnailPoster">
+            </Poster>
+            <Label
+                id="TitleLabel"
+                wrap="true"
+                lineSpacing="0"
+                maxLines="2">
+                <Font role="font" uri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf" size="30" />
+            </Label>
+        </LayoutGroup>
+    </children>
+
+    <script type="text/brightscript" uri="GamesViewListItem.brs"/>
+</component>

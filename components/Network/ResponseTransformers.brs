@@ -19,9 +19,22 @@ End Function
 Function GamesResponseTransformer(content as String) as Object
     json = JsonTransformer(content)
 
-    return {
-        test: "YA"
-    }
+    gamesNode = CreateObject("roSGNode", "ContentNode")
+
+    for each item in json
+        item.model_id = item.id
+        item.Delete("id")
+
+        gameNode = gamesNode.CreateChild("GameTypeModel")
+        gameNode.setFields(item)
+
+        ' Use EnhancedMarkupGrid
+        gameNode.addFields({
+            dynamicComponentName: "GamesViewListItem"
+        })
+    end for
+
+    return gamesNode
 End Function
 
 Function ChannelsResponseTransformer(content as String) as Object
