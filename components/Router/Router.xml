@@ -6,14 +6,12 @@
             imageUri="pkg:/images/spinner.png"
             spinInterval="1"
             fadeInterval="0.3"
-            width="1920"
-            height="1080"
-            imageWidth="60"
-            imageHeight="60"
+            width="60"
+            height="60"
             centered="false"
-            backgroundColor="0x232323"
-            backgroundOpacity="1"
-            control="start" />
+            backgroundOpacity="0"
+            control="start"
+            translation="[930, 510]" />
     </children>
     <script type="text/brightscript" uri="Router.brs"/>
 </component>

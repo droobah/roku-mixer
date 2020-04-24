@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="NavBar" extends="Group" initialFocus="ButtonsTargetList">
     <children>
-        <Rectangle
-            id="Background"
+        <Poster
             width="1920"
-            height="84"
-            color="0x101010DD" />
+            height="104"
+            uri="pkg:/images/header_background.png"
+            clippingRect="[0, 0, 1920, 200]" />
         <SimpleLabel
             text="MIXER"
             vertOrigin="center"
@@ -19,12 +19,6 @@
             advanceKey="right"
             reverseKey="left"
             translation="[180, 18]" />
-        <Poster
-            id="Shadow"
-            uri="pkg:/images/header_dropshadow.png"
-            width="1920"
-            height="9"
-            translation="[0, 84]" />
         <SimpleLabel
             id="CalculateWidthLabel"
             fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"

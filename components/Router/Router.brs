@@ -163,13 +163,13 @@ Sub onRouteChange(event as Object)
     ' Useful if your view doesn't interact with HTTP resources
     if component.contentSet <> invalid and component.contentSet = false
       component.observeField("contentSet", "RouteContentSet")
+      component.visible = false
       m.spinner.control = "start"
     end if
 
     if matchingRoute.fullscreen = false
       component.translation = [0, 84]
-      m.spinner.height = 1080 - 84
-      m.spinner.translation = [0, 84]
+      m.spinner.translation = [1920 / 2 - m.spinner.width / 2, (1080 + 84) / 2 - m.spinner.height / 2]
     end if
 
     if m.screenStack.peek() <> invalid and m.screenStack.peek().route = route
@@ -180,7 +180,8 @@ Sub onRouteChange(event as Object)
   end if
 End Sub
 
-Sub RouteContentSet()
+Sub RouteContentSet(event as Object)
+  event.getRoSGNode().visible = true
   m.spinner.control = "stop"
 End Sub
 
@@ -202,7 +203,6 @@ Sub AddScreen(node, topLevelNode, nonDuplicatePreviousRoute)
   end if
   ' insert below loading spinner
   m.top.insertChild(node, m.top.getChildCount() - 1)
-  node.visible = true
   node.setFocus(true)
   m.screenStack.push(node)
 End Sub

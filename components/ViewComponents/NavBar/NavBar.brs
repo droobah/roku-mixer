@@ -6,8 +6,6 @@ Sub Init()
   m.buttonSpacingX = 40
   m.buttonHeight = 48
 
-  m.background = m.top.findNode("Background")
-  m.shadow = m.top.findNode("Shadow")
   m.calculateWidthLabel = m.top.findNode("CalculateWidthLabel")
   m.buttonsTargetList = m.top.findNode("ButtonsTargetList")
 
