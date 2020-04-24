@@ -8,10 +8,9 @@
             id="VideoNode"
             width="1920"
             height="1080"
-            inheritParentTransform="false"
-            inheritParentOpacity="false"
             translation="[0, 0]" />
     </children>
 
     <script type="text/brightscript" uri="LivePlayer.brs"/>
+    <script type="text/brightscript" uri="pkg:/source/Helpers.brs"/>
 </component>

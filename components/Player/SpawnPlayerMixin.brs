@@ -1,6 +1,7 @@
 Sub PlayLiveStream(channelId as Integer)
     m._player = CreateObject("roSGNode", "LivePlayer")
     m._player.observeField("visible", "_OnPlayerVisibilityChange")
+    m._player.translation = [0 - m.top.translation[0], 0 - m.top.translation[1]]
     m.top.appendChild(m._player)
     m._player.setFocus(true)
     m._player.channelId = channelId
