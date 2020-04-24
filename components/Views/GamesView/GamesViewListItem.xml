@@ -13,7 +13,7 @@
     <children>
         <LayoutGroup
             layoutDirection="vert"
-            itemSpacings="[6, 0]">
+            itemSpacings="[12, 0]">
             <Poster
                 id="ThumbnailPoster">
             </Poster>

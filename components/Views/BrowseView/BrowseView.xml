@@ -5,6 +5,7 @@
             id="BrowseGridList"
             itemSize="[564, 462]"
             itemSpacing="[42, 81]"
+            focusSize="[564, 318]"
             numColumns="3"
             numRows="2"
             vertFocusAnimationStyle="fixedFocus"

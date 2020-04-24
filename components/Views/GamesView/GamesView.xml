@@ -5,10 +5,12 @@
             id="GamesGridList"
             itemSize="[264, 350]"
             itemSpacing="[32, 81]"
+            focusSize="[264, 264]"
             numColumns="6"
             numRows="3"
             vertFocusAnimationStyle="fixedFocus"
             scrollSpeed="5"
+            focusBitmapUri="pkg:/images/stream_gridlist_focus_thumbnail_$$RES$$.9.png"
             drawFocusFeedback="true"
             translation="[72, 60]" />
         <FilterDrawer
