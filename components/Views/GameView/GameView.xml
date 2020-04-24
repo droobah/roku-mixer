@@ -12,11 +12,16 @@
         <Poster
             id="CoverPoster"
             width="1920"
-            height="300"
+            height="400"
             loadWidth="960"
             loadHeight="540"
             loadDisplayMode="scaleToZoom"
             uri=""
+            translation="[0, 0]" />
+        <Poster
+            width="1920"
+            height="400"
+            uri="pkg:/images/game_cover_gradient.png"
             translation="[0, 0]" />
         <Poster
             id="GamePoster"
