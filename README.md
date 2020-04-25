@@ -1,3 +1,6 @@
+#### Beta channel
+<https://my.roku.com/add/6QRRQVV>
+
 #### To Run:
 
 1. Enable Developer Mode on your Roku
