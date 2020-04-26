@@ -10,6 +10,7 @@ Sub Init()
 
     m.drawer = m.top.findNode("Drawer")
     m.coverPoster = m.top.findNode("CoverPoster")
+    m.coverPosterFadeInAnimation = m.top.findNode("FadeInAnimation")
     m.gamePoster = m.top.findNode("GamePoster")
     m.nameLabel = m.top.findNode("NameLabel")
     m.descriptionLabel = m.top.findNode("DescriptionLabel")
@@ -34,6 +35,7 @@ Sub OnModelSet(event as Object)
     end if
 
     if modelData.backgroundUrl <> invalid and modelData.backgroundUrl <> ""
+        m.coverPoster.observeField("loadStatus", "OnCoverPosterLoadStatusChange")
         m.coverPoster.uri = modelData.backgroundUrl
     end if
 
@@ -47,6 +49,14 @@ End Sub
 Sub OnFocusedChildChange()
     if m.top.hasFocus()
         m.gameStreamsGridList.setFocus(true)
+    end if
+End Sub
+
+Sub OnCoverPosterLoadStatusChange(event as Object)
+    status = event.getData()
+
+    if status = "ready"
+        m.coverPosterFadeInAnimation.control = "start"
     end if
 End Sub
 
