@@ -10,7 +10,6 @@
             height="60"
             centered="false"
             backgroundOpacity="0"
-            control="start"
             translation="[930, 510]" />
     </children>
     <script type="text/brightscript" uri="Router.brs"/>

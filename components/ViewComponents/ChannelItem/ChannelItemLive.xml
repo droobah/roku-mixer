@@ -59,7 +59,6 @@
                 </MaskGroup>
                 <LayoutGroup
                     layoutDirection="vert"
-                    vertAlignment="vert"
                     translation="[72, -4]">
                     <Label
                         id="UsernameLabel"

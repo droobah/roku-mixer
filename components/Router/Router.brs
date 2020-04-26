@@ -33,8 +33,8 @@ Sub Init()
     {
       path: "/login",
       componentName: "LoginView",
-      fullscreen: true,
-      topLevel: false,
+      fullscreen: false,
+      topLevel: true,
     },
     {
       path: "/stream/:token",
@@ -135,7 +135,7 @@ Sub onRouteChange(event as Object)
     route = route.route
   end if
 
-  ? "ROUTE CHANGE"; route
+  ? "ROUTE CHANGE "; route
 
   if route = invalid or route = "" then return
 
@@ -165,6 +165,8 @@ Sub onRouteChange(event as Object)
       component.observeField("contentSet", "RouteContentSet")
       component.visible = false
       m.spinner.control = "start"
+    else
+      m.spinner.control = "stop"
     end if
 
     if matchingRoute.fullscreen = false

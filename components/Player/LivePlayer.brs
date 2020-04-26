@@ -21,8 +21,6 @@ Sub ChannelIdSet(event as Object)
     m.videoNode.content = m.videoContent
     m.videoNode.setFocus(true)
     m.videoNode.control = "play"
-
-    ? m.videoContent.url
 End Sub
 
 Sub OnVideoStateChange(event as Object)
