@@ -6,4 +6,5 @@
     </interface>
 
     <script type="text/brightscript" uri="MultiPurposeTask.brs" />
+    <script type="text/brightscript" uri="RegistryMixin.brs" />
 </component>

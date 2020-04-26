@@ -16,28 +16,34 @@ Sub Init()
     title: "DISCOVER",
     icon: "pkg:/images/discover.png",
     iconColor: "0xD82B2B",
-    routePath: "/discover"
+    routePath: "/discover",
+    dynamicComponentName: "NavbarMenuItem"
   }, {
     title: "FOLLOWING",
     icon: "pkg:/images/following.png",
-    routePath: "/following"
+    routePath: "/following",
+    dynamicComponentName: "NavbarMenuItem"
   }, {
     title: "GAMES",
     icon: "pkg:/images/games.png",
-    routePath: "/games"
+    routePath: "/games",
+    dynamicComponentName: "NavbarMenuItem"
   }, {
     title: "BROWSE",
     icon: "pkg:/images/browse.png",
-    routePath: "/browse"
+    routePath: "/browse",
+    dynamicComponentName: "NavbarMenuItem"
   }, {
     title: "SETTINGS",
     icon: "pkg:/images/settings.png",
-    routePath: "/settings"
+    routePath: "/settings",
+    dynamicComponentName: "NavbarMenuItem"
   }, {
     title: "LOGIN",
     icon: "pkg:/images/user.png",
     routePath: "/login",
-    floatRight: true
+    dynamicComponentName: "NavBarMenuItemUser",
+    profileButton: true
   }]
 
   m.focusedTargetSetRects = []
@@ -48,7 +54,7 @@ Sub Init()
   ' m.buttonsTargetList.setFocus(true)
 
   ' select default item
-  m.defaultSelection = 3
+  m.defaultSelection = 0
   m.buttonsTargetList.animateToItem = m.defaultSelection
   OnButtonClick(m.defaultSelection)
 
@@ -76,13 +82,13 @@ Sub OnButtonClick(event as Dynamic)
     m.defaultSelection = invalid
   end if
 
-  ? "TO"; m.content[index].routePath
   m.global.route = m.content[index].routePath
 End Sub
 
 Sub OnCurrentRouteChanged(event as Object)
   route = event.getData()
-  ? "ROUTE CHANGE"; route
+  ' TODO: react to route change here and change active menu item
+
   ' if route.name = invalid then return
   ' for i = 0 to m.top.content.Count() - 1
   '   m.buttonsContainer.findNode(m.top.content[i].key).isSelected = startsWith(m.top.content[i].routeName, route.name)
@@ -127,7 +133,7 @@ Sub AddMenuItem(item)
   m.unfocusedTargetSetRects.Push([ x, 0, unfocusedItemWidth, m.buttonHeight ])
 End Sub
 
-Sub AddMenuItemFloatRight(item)
+Sub AddMenuItemProfileButton(item)
   unfocusedItemWidth = m.buttonCollapsedWidth
   
   ' Add unfocused item rect for all existing sets
@@ -148,7 +154,7 @@ Sub AddMenuItemFloatRight(item)
   end for
 
   tempRects.Push([
-    1920 - m.buttonsTargetList.translation[0] - unfocusedItemWidth - m.buttonsContainerMarginX - GetButtonTextWidth(item.title) - 9, 0, m.buttonCollapsedWidth + GetButtonTextWidth(item.title) + 9, m.buttonHeight
+    1920 - m.buttonsTargetList.translation[0] - unfocusedItemWidth - m.buttonsContainerMarginX - 240 - 9, 0, m.buttonCollapsedWidth + 240 + 9, m.buttonHeight
   ])
 
   m.focusedTargetSetRects.Push(tempRects)
@@ -159,8 +165,8 @@ End Sub
 
 Sub SetTargetListRects()
   for each item in m.content
-    if item.floatRight <> invalid and item.floatRight = true
-      AddMenuItemFloatRight(item)
+    if item.profileButton <> invalid and item.profileButton = true
+      AddMenuItemProfileButton(item)
     else
       AddMenuItem(item)
     end if

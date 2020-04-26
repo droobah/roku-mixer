@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 <component name="MainScene" extends="Scene">
+    <interface>
+        <field id="token" type="assocarray" alwaysNotify="true" onChange="OnTokenReadFromMain" />
+    </interface>
+
     <script type="text/brightscript" uri="MainScene.brs" />
     <script type="text/brightscript" uri="pkg:/components/MultiPurposeTask/MultiPurposeTaskMixin.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Network/RequestMixin.brs" />
+    <script type="text/brightscript" uri="pkg:/components/AuthMixin.brs" />
 </component>

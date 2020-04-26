@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="LinkView" extends="Group">
+    <children>
+        <LayoutGroup
+            layoutDirection="vert"
+            horizAlignment="center"
+            vertAlignment="center"
+            itemSpacings="[18, 0]"
+            translation="[960, 498]">
+            <SimpleLabel
+                text="Go to 'https://mixer.com/go' and enter the following code:" />
+            <SimpleLabel
+                id="CodeLabel"
+                text=""
+                fontUri="pkg:/fonts/BarlowSemiCondensed-Bold.ttf"
+                fontSize="140" />
+            <LoadingIndicator
+                id="LoadingIndicator"
+                imageUri="pkg:/images/spinner.png"
+                clockwise="true"
+                spinInterval="1"
+                fadeInterval="0.2"
+                width="60"
+                height="60"
+                centered="false"
+                backgroundOpacity="0" />
+        </LayoutGroup>
+        <Timer
+            id="PollTimer"
+            duration="6"
+            repeat="true" />
+    </children>
+
+    <script type="text/brightscript" uri="LinkView.brs"/>
+    <script type="text/brightscript" uri="pkg:/components/Network/RequestMixin.brs" />
+    <script type="text/brightscript" uri="pkg:/components/MultiPurposeTask/MultiPurposeTaskMixin.brs" />
+    <script type="text/brightscript" uri="pkg:/components/AuthMixin.brs" />
+</component>

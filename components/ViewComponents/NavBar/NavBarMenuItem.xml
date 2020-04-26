@@ -2,10 +2,10 @@
 <component name="NavBarMenuItem" extends="Group">
  
     <interface>
-        <field id="itemContent" type="node" />
         <field id="currRect" type="rect2D" />
-        <field id="focusPercent" type="float" />
         <field id="groupHasFocus" type="boolean" />
+        <field id="itemContent" type="node" />
+        <field id="focusPercent" type="float" />
         <field id="itemHasFocus" type="boolean" />
     </interface>
 
@@ -18,15 +18,22 @@
             id="Icon"
             width="30"
             height="30"
+            loadWidth="30"
+            loadHeight="30"
+            loadDisplayMode="limitSize"
+            uri=""
             opacity="0.4"
             translation="[9, 9]" />
-        <SimpleLabel
-            id="Label"
-            fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"
-            fontSize="32"
-            vertOrigin="center"
-            opacity="0"
-            translation="[48, 24]" />
+        <Group
+            id="LabelContainer">
+            <SimpleLabel
+                id="Label"
+                fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"
+                fontSize="32"
+                vertOrigin="center"
+                opacity="0"
+                translation="[48, 24]" />
+        </Group>
     </children>
 
     <script type="text/brightscript" uri="NavBarMenuItem.brs"/>

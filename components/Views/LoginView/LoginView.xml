@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="LoginView" extends="BaseView">
-    <children>
-        <Label
-            text="LoginView" />
-    </children>
-
     <script type="text/brightscript" uri="LoginView.brs"/>
 </component>

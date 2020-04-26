@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="DynamicNavBarMenuItemComponent" extends="Group">
+
+    <interface>
+        <field id="currRect" type="rect2D" onChange="ForwardEvent" />
+        <field id="groupHasFocus" type="boolean" onChange="ForwardEvent" />
+        <field id="itemContent" type="node" onChange="ItemContentChanged" />
+        <field id="focusPercent" type="float" onChange="ForwardEvent" />
+        <field id="itemHasFocus" type="boolean" onChange="ForwardEvent" />
+    </interface>
+
+    <script type="text/brightscript" uri="DynamicNavBarMenuItemComponent.brs"/>
+</component>

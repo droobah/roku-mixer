@@ -12,10 +12,10 @@
             translation="[39, 42]" />
         <TargetList
             id="ButtonsTargetList"
-            itemComponentName="NavBarMenuItem"
+            itemComponentName="DynamicNavBarMenuItemComponent"
             duration="0.1"
             opacity="0.5"
-            easeFunction="outExpo"
+            easeFunction="inOutCubic"
             advanceKey="right"
             reverseKey="left"
             translation="[180, 18]" />

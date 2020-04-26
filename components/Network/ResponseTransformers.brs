@@ -2,7 +2,8 @@ Function CallTransformerFunction(functionName as String, content as String) as D
     map = {
         "JsonTransformer": JsonTransformer,
         "ChannelsResponseTransformer": ChannelsResponseTransformer,
-        "GamesResponseTransformer": GamesResponseTransformer
+        "GamesResponseTransformer": GamesResponseTransformer,
+        "UserResponseTransformer": UserResponseTransformer
     }
 
     if map[functionName] <> invalid
@@ -14,6 +15,17 @@ End Function
 
 Function JsonTransformer(content as String) as Object
     return ParseJson(content)
+End Function
+
+Function UserResponseTransformer(content as String) as Object
+    json = JsonTransformer(content)
+
+    userNode = CreateObject("roSGNode", "UserModel")
+    json.model_id = json.id
+    json.Delete("id")
+    userNode.setFields(json)
+
+    return userNode
 End Function
 
 Function GamesResponseTransformer(content as String) as Object
