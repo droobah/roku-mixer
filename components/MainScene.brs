@@ -37,9 +37,10 @@ Sub OnTokenReadFromMain(event as Object)
     m.top.insertChild(m.navBar, 0)
 
     m.changeLog = {
-        version: "1.0.3",
+        version: "1.0.4",
         lines: [
-            "- Games section now works"
+            "- Mixer account linking added (Login)",
+            "- Following section now works"
         ]
     }
     ShowChangelog()
