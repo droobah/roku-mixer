@@ -54,7 +54,7 @@ Sub Init()
   ' m.buttonsTargetList.setFocus(true)
 
   ' select default item
-  m.defaultSelection = 0
+  m.defaultSelection = 3
   m.buttonsTargetList.animateToItem = m.defaultSelection
   OnButtonClick(m.defaultSelection)
 
