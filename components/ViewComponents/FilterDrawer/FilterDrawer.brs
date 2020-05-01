@@ -11,7 +11,8 @@ Sub Init()
     m.dimmer = m.top.findNode("Dimmer")
     m.drawer = m.top.findNode("Drawer")
     m.drawerBackground = m.top.findNode("DrawerBackground")
-    m.drawerPeeker = m.top.findNode("DrawerPeeker")
+    m.drawerPeekerPoster = m.top.findNode("DrawerPeekerPoster")
+    m.filterLabel = m.top.findNode("FilterLabel")
     m.collapseAnimation = m.top.findNode("CollapseAnimation")
     m.expandAnimation = m.top.findNode("ExpandAnimation")
     m.collapsedAnimationInterpolator = m.top.findNode("CollapsedAnimationInterpolator")
@@ -24,9 +25,10 @@ Sub Init()
     m.dimmer.height = doScale(1080, scaleFactor)
     m.drawerBackground.width = doScale(400, scaleFactor)
     m.drawerBackground.height = doScale(1080, scaleFactor)
-    m.drawerPeeker.width = doScale(80, scaleFactor)
-    m.drawerPeeker.height = doScale(80, scaleFactor)
-    m.drawerPeeker.translation = [doScale(400, scaleFactor), doScale(100, scaleFactor)]
+    m.drawerPeekerPoster.width = doScale(54, scaleFactor)
+    m.drawerPeekerPoster.height = doScale(140, scaleFactor)
+    m.drawerPeekerPoster.translation = [doScale(400, scaleFactor), doScale(144, scaleFactor)]
+    m.filterLabel.translation = [doScale(3, scaleFactor), doScale(123, scaleFactor)]
     m.collapsedAnimationInterpolator.keyValue = [[0.0, 0.0], [doScale(-400, scaleFactor), 0]]
     m.expandAnimationInterpolator.keyValue = [[doScale(-400, scaleFactor), 0], [0.0, 0.0]]
 

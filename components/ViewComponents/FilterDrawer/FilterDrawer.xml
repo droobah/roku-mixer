@@ -15,14 +15,24 @@
             id="Drawer">
             <Rectangle
                 id="DrawerBackground"
-                color="0x000000">
+                color="0x2B2B2B">
                 <Label
-                    text="TEST" />
+                    text="WIP" />
             </Rectangle>
-            <Rectangle
-                id="DrawerPeeker"
-                color="0x000000">
-            </Rectangle>
+            <Poster
+                id="DrawerPeekerPoster"
+                uri="pkg:/images/drawer_peeker_background.9.png"
+                blendColor="0x2B2B2B">
+                <SimpleLabel
+                    id="FilterLabel"
+                    text="FILTER"
+                    vertOrigin="top"
+                    horizOrigin="left"
+                    rotation="1.5708"
+                    color="0xEAEAEA"
+                    fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"
+                    fontSize="38" />
+            </Poster>
         </Group>
 
         <Animation
