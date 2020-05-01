@@ -8,7 +8,6 @@ Sub Init()
     m.canFetchData = false
     m.fetchingData = false
 
-    m.drawer = m.top.findNode("Drawer")
     m.coverPoster = m.top.findNode("CoverPoster")
     m.coverPosterFadeInAnimation = m.top.findNode("FadeInAnimation")
     m.gamePoster = m.top.findNode("GamePoster")
@@ -112,14 +111,6 @@ Function onKeyEvent(key, press) as Boolean
 
     if key = "back" and m.gameStreamsGridList.isInFocusChain() and m.gameStreamsGridList.itemFocused >= 3
         m.gameStreamsGridList.jumpToItem = 0
-        return true
-    else if key = "left" and m.gameStreamsGridList.isInFocusChain()
-        m.drawer.toggle = true
-        m.drawer.setFocus(true)
-        return true
-    else if (key = "right" or key = "back") and m.drawer.isInFocusChain()
-        m.drawer.toggle = false
-        m.gameStreamsGridList.setFocus(true)
         return true
     end if
 

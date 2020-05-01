@@ -4,7 +4,6 @@ Sub Init()
     m.canFetchData = true
     m.fetchingData = false
 
-    m.drawer = m.top.findNode("Drawer")
     m.followingGridList = m.top.findNode("FollowingGridList")
     m.notLoggedInLabel = m.top.findNode("NotLoggedInLabel")
 
@@ -66,21 +65,3 @@ Sub FetchDataCallback(event as Object)
     m.fetchingData = false
     m.canFetchData = hasNextPage
 End Sub
-
-Function onKeyEvent(key, press) as Boolean
-    ? ">>> FollowingView >> OnkeyEvent"
-
-    if not press then return false
-
-    if key = "left" and m.followingGridList.isInFocusChain()
-        m.drawer.toggle = true
-        m.drawer.setFocus(true)
-        return true
-    else if (key = "right" or key = "back") and m.drawer.isInFocusChain()
-        m.drawer.toggle = false
-        m.followingGridList.setFocus(true)
-        return true
-    end if
-
-    return false
-End Function

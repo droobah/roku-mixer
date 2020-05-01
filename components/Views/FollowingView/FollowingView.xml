@@ -20,8 +20,6 @@
             horizOrigin="center"
             visible="false"
             translation="[960, 498]" />
-        <FilterDrawer
-            id="Drawer" />
     </children>
     <script type="text/brightscript" uri="FollowingView.brs" />
     <script type="text/brightscript" uri="pkg:/components/AuthMixin.brs" />

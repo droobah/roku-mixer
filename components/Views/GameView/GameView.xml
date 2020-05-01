@@ -55,8 +55,6 @@
             focusBitmapUri="pkg:/images/stream_gridlist_focus_thumbnail_$$RES$$.9.png"
             drawFocusFeedback="true"
             translation="[72, 330]" />
-        <FilterDrawer
-            id="Drawer" />
 
         <Animation
             id="FadeInAnimation"
