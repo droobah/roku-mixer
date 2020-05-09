@@ -52,9 +52,9 @@
             numRows="2"
             vertFocusAnimationStyle="fixedFocus"
             scrollSpeed="5"
-            focusBitmapUri="pkg:/images/stream_gridlist_focus_thumbnail_$$RES$$.9.png"
+            focusBitmapUri="pkg:/images/rounded_focus_$$RES$$.9.png"
             drawFocusFeedback="true"
-            translation="[72, 330]" />
+            translation="[60, 330]" />
 
         <Animation
             id="FadeInAnimation"

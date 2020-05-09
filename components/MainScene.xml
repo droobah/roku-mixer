@@ -4,6 +4,10 @@
         <field id="token" type="assocarray" alwaysNotify="true" onChange="OnTokenReadFromMain" />
     </interface>
 
+    <children>
+        <Label /> <!-- Empty initial element for RALE to work -->
+    </children>
+
     <script type="text/brightscript" uri="MainScene.brs" />
     <script type="text/brightscript" uri="pkg:/components/MultiPurposeTask/MultiPurposeTaskMixin.brs" />
     <script type="text/brightscript" uri="pkg:/components/Network/RequestMixin.brs" />

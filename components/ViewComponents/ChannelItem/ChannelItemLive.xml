@@ -13,25 +13,28 @@
     <children>
         <LayoutGroup
             layoutDirection="vert"
-            itemSpacings="[12, 3]"
-            translation="[0, 0]">
-            <Poster
-                id="ThumbnailPoster">
-                <Rectangle
-                    id="ViewerCountWrapperRectangle"
-                    height="36"
-                    color="0x000000CC"
-                    inheritParentOpacity="false"
-                    translation="[12, 12]">
-                    <SimpleLabel
-                        id="ViewerCountLabel"
-                        vertOrigin="center"
-                        fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"
-                        fontSize="24"
-                        color="0xE51A1A"
-                        translation="[6, 18]" />
-                </Rectangle>
-            </Poster>
+            itemSpacings="[20, 12]"
+            horizAlignment="custom">
+            <MaskGroup
+                id="ThumbnailRoundedMaskGroup"
+                maskUri="pkg:/images/channel_rounded_mask.png">
+                <Poster
+                    id="ThumbnailPoster">
+                    <LayoutGroup
+                        id="BadgeLayoutGroup"
+                        layoutDirection="vert"
+                        horizAlignment="right"
+                        itemSpacings="[9]">
+                        <StatusBadge
+                            text="• LIVE"
+                            color="0xF82727" />
+                        <StatusBadge
+                            id="ViewerCountBadge"
+                            icon="pkg:/images/icons/eye-f.svg.png"
+                            color="0xEBEBEB" />
+                    </LayoutGroup>
+                </Poster>
+            </MaskGroup>
             <Label
                 id="TitleLabel"
                 horizAlign="left"
@@ -39,12 +42,15 @@
                 height="0"
                 numLines="0"
                 maxLines="2"
-                lineSpacing="-6">
+                lineSpacing="0"
+                color="0xEBEBEB"
+                translation="[20, 0]">
                 <Font role="font" uri="pkg:/fonts/NotoSans-Bold.ttf" size="32" />
             </Label>
-            <Group>
+            <Group
+                translation="[20, 0]">
                 <MaskGroup
-                    id="RoundedMaskGroup"
+                    id="AvatarRoundedMaskGroup"
                     maskOffset="[0, 0]"
                     translation="[0, 0]"
                     maskUri="pkg:/images/circlemask_small.png">
@@ -59,18 +65,20 @@
                 </MaskGroup>
                 <LayoutGroup
                     layoutDirection="vert"
-                    translation="[72, -4]">
+                    translation="[70, 0]">
                     <Label
                         id="UsernameLabel"
                         vertAlign="center"
-                        maxLines="1">
-                        <Font role="font" uri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf" size="28" />
+                        maxLines="1"
+                        color="0xEBEBEB">
+                        <Font role="font" uri="pkg:/fonts/Barlow-SemiBold.ttf" size="28" />
                     </Label>
                     <Label
                         id="GameLabel"
                         vertAlign="center"
-                        maxLines="1">
-                        <Font role="font" uri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf" size="28" />
+                        maxLines="1"
+                        color="0xC0C0C0">
+                        <Font role="font" uri="pkg:/fonts/Barlow-Regular.ttf" size="24" />
                     </Label>
                 </LayoutGroup>
             </Group>

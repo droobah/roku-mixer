@@ -1,13 +1,12 @@
 Sub Init()
     ? "[MainScene] Init()"
 
-    m.top.backgroundColor = "0x050505"
+    m.top.backgroundColor = "0x212C3D"
+    m.top.backgroundURI = ""
 
     ' #START TRACKER#
     m.tracker = m.top.createChild("TrackerTask")
     ' #END TRACKER#
-
-    m.top.backgroundURI = ""
 
     m.global.addField("uriFetcher", "node", false)
     m.global.addField("auth", "node", false)
@@ -33,8 +32,8 @@ Sub OnTokenReadFromMain(event as Object)
 
     m.router = CreateObject("roSGNode", "Router")
     m.top.appendChild(m.router)
-    m.navBar = CreateObject("roSGNode", "NavBar")
-    m.top.insertChild(m.navBar, 0)
+    m.sideBar = CreateObject("roSGNode", "SideBar")
+    m.top.appendChild(m.sideBar)
 
     m.changeLog = {
         version: "1.0.4",
@@ -132,16 +131,16 @@ Function onKeyEvent(key, press) as Boolean
 
     if key = "back"
         if m.router.isInFocusChain()
-            m.navBar.setFocus(true)
+            m.sideBar.setFocus(true)
             return true
         end if
-    else if key = "up"
+    else if key = "left"
         if m.router.isInFocusChain()
-            m.navBar.setFocus(true)
+            m.sideBar.setFocus(true)
             return true
         end if
-    else if key = "down"
-        if m.navBar.isInFocusChain()
+    else if key = "right"
+        if m.sideBar.isInFocusChain()
             m.router.setFocus(true)
             return true
         end if

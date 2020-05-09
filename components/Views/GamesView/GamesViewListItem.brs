@@ -1,16 +1,22 @@
 Sub Init()
-    m.top.opacity = 0.5
+    m.top.opacity = 0.6
 
+    m.thumbnailRoundedMaskGroup = m.top.findNode("ThumbnailRoundedMaskGroup")
     m.thumbnailPoster = m.top.findNode("ThumbnailPoster")
     m.titleLabel = m.top.findNode("TitleLabel")
+    m.badgeLayoutGroup = m.top.findNode("BadgeLayoutGroup")
+    m.viewerCountBadge = m.top.findNode("ViewerCountBadge")
 End Sub
 
 Sub WidthChanged(event as Object)
     width = event.getData()
 
+    scaledWidth = doScale(width, m.global.scaleFactor)
+    m.thumbnailRoundedMaskGroup.maskSize = [scaledWidth, scaledWidth]
     m.thumbnailPoster.width = width
     m.thumbnailPoster.height = width
-    m.titleLabel.width = width
+    m.titleLabel.width = width - 20 - 20
+    m.badgeLayoutGroup.translation = [width - 20, 20]
 End Sub
 
 Sub ContentChanged(event as Object)
@@ -22,12 +28,19 @@ Sub ContentChanged(event as Object)
         m.thumbnailPoster.uri = content.coverUrl
     end if
 
+    if content.viewersCurrent <> invalid
+        m.viewerCountBadge.text = content.viewersCurrent.ToStr()
+    else
+        m.viewerCountBadge.text = ""
+    end if
+
+
     m.titleLabel.text = content.name
 End Sub
 
 Sub GridFocusChanged()
     if not m.top.gridHasFocus and m.top.focusPercent > 0.0
-        m.top.opacity = 0.5
+        m.top.opacity = 0.6
     end if
 End Sub
 
@@ -43,5 +56,14 @@ Sub ShowFocus(event as Object)
     if not m.top.gridHasFocus then return
 
     percent = event.getData()
-    m.top.opacity = percent / 2 + 0.5
+    m.top.opacity = percent / 2.5 + 0.6
 End Sub
+
+Function doScale(number as Integer, scaleFactor as Integer) as Integer
+  if scaleFactor = 0 or number = 0
+    return number
+  end if
+
+  scaledValue = number - number / scaleFactor
+  return scaledValue
+End Function

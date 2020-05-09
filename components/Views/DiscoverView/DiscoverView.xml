@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="DiscoverView" extends="BaseView">
     <children>
-        <Label
-            text="DiscoverView" />
+        <TargetList
+            id="FeaturedCarouselTargetList"
+            itemComponentName="FeaturedCarouselItemComponent"
+            easeFunction="inOutQuad"
+            defaultTargetSetFocusIndex="2"
+            advanceKey="right"
+            reverseKey="left"
+            wrap="true" />
     </children>
     <script type="text/brightscript" uri="DiscoverView.brs"/>
 </component>

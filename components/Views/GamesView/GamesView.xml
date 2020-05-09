@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="GamesView" extends="BaseView">
     <children>
+        <PageHeader
+            backgroundUri="pkg:/images/page_header_background.png"
+            title="Games"
+            width="1784"
+            height="156" />
         <EnhancedMarkupGrid
             id="GamesGridList"
-            itemSize="[264, 350]"
-            itemSpacing="[32, 81]"
-            focusSize="[264, 264]"
-            numColumns="6"
-            numRows="3"
+            itemSize="[300, 422]"
+            itemSpacing="[41, 64]"
+            focusSize="[300, 300]"
+            numColumns="5"
+            numRows="2"
             vertFocusAnimationStyle="fixedFocus"
             scrollSpeed="5"
-            focusBitmapUri="pkg:/images/stream_gridlist_focus_thumbnail_$$RES$$.9.png"
+            focusBitmapUri="pkg:/images/rounded_focus_$$RES$$.9.png"
             drawFocusFeedback="true"
-            translation="[90, 60]" />
-        <FilterDrawer
-            id="Drawer" />
+            translation="[60, 198]" />
     </children>
 
     <script type="text/brightscript" uri="GamesView.brs"/>

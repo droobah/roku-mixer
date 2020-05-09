@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="StatusBadge" extends="Group">
+    <interface>
+        <field id="text" type="string" onChange="OnTextChange" />
+        <field id="icon" type="string" onChange="OnIconChange" />
+        <field id="color" type="color" onChange="OnColorChange" />
+    </interface>
+
+    <children>
+        <Rectangle
+            id="WrapperRectangle"
+            height="44"
+            color="0x000000CC">
+            <Group
+                id="ContentGroup"
+                translation="[22, 0]">
+                <SimpleLabel
+                    id="TextLabel"
+                    fontUri="pkg:/fonts/Rajdhani-Bold.ttf"
+                    fontSize="24"
+                    color="0xEBEBEB"
+                    vertOrigin="center"
+                    translation="[0, 24]" />
+            </Group>
+        </Rectangle>
+    </children>
+
+    <script type="text/brightscript" uri="StatusBadge.brs"/>
+</component>

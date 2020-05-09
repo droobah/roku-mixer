@@ -24,25 +24,25 @@ Sub onTokenChange(event as Object)
     if access_token = ""
         RenderLinkView()
     else
-        RenderUserView()
+        RenderAuthenticatedView()
     end if
 End Sub
 
 Sub RenderLinkView()
-    if m.currentView = invalid or m.currentView.id <> "LinkView"
+    if m.currentView = invalid or m.currentView.id <> "UserLinkView"
         m.top.removeChildrenIndex(m.top.getChildCount(), 0)
-        m.currentView = CreateObject("roSGNode", "LinkView")
-        m.currentView.id = "LinkView"
+        m.currentView = CreateObject("roSGNode", "UserLinkView")
+        m.currentView.id = "UserLinkView"
         m.top.appendChild(m.currentView)
         m.currentView.setFocus(true)
     end if
 End Sub
 
-Sub RenderUserView()
-    if m.currentView = invalid or m.currentView.id <> "UserView"
+Sub RenderAuthenticatedView()
+    if m.currentView = invalid or m.currentView.id <> "UserAuthenticatedView"
         m.top.removeChildrenIndex(m.top.getChildCount(), 0)
-        m.currentView = CreateObject("roSGNode", "UserView")
-        m.currentView.id = "UserView"
+        m.currentView = CreateObject("roSGNode", "UserAuthenticatedView")
+        m.currentView.id = "UserAuthenticatedView"
         m.top.appendChild(m.currentView)
         m.currentView.setFocus(true)
     end if

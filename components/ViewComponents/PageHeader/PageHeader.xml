@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="PageHeader" extends="Group">
+    <interface>
+        <field id="width" type="float" />
+        <field id="height" type="float" />
+        <field id="title" type="string" alias="TitleLabel.text" />
+        <field id="backgroundUri" type="string" alias="BackgroundPoster.uri" />
+    </interface>
+
+    <children>
+        <Poster
+            id="BackgroundPoster" />
+        <SimpleLabel
+            id="TitleLabel"
+            fontUri="pkg:/fonts/Rajdhani-Regular.ttf"
+            fontSize="68"
+            color="0xEBEBEB"
+            horizOrigin="center"
+            vertOrigin="center" />
+    </children>
+
+    <script type="text/brightscript" uri="PageHeader.brs"/>
+</component>

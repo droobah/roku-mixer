@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="LinkView" extends="Group">
+<component name="UserLinkView" extends="Group">
     <children>
         <LayoutGroup
             layoutDirection="vert"
@@ -31,7 +31,7 @@
             repeat="true" />
     </children>
 
-    <script type="text/brightscript" uri="LinkView.brs"/>
+    <script type="text/brightscript" uri="UserLinkView.brs"/>
     <script type="text/brightscript" uri="pkg:/components/Network/RequestMixin.brs" />
     <script type="text/brightscript" uri="pkg:/components/MultiPurposeTask/MultiPurposeTaskMixin.brs" />
     <script type="text/brightscript" uri="pkg:/components/AuthMixin.brs" />

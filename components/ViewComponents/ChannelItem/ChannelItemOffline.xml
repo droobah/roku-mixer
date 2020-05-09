@@ -13,24 +13,15 @@
     <children>
         <LayoutGroup
             layoutDirection="vert"
-            itemSpacings="[12, 3]"
-            translation="[0, 0]">
-            <Rectangle
-                id="BackgroundRectangle"
-                color="0x29374A">
-                <Rectangle
-                    width="94"
-                    height="36"
-                    color="0x000000CC"
-                    translation="[12, 12]">
-                    <SimpleLabel
-                        vertOrigin="center"
-                        fontUri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf"
-                        fontSize="24"
-                        color="0xEBEBEB"
-                        text="OFFLINE"
-                        translation="[6, 18]" />
-                </Rectangle>
+            itemSpacings="[20, 10]"
+            horizAlignment="custom">
+            <Poster
+                id="BackgroundPoster"
+                uri="pkg:/images/rounded_background_$$RES$$.9.png">
+                <StatusBadge
+                    id="StatusBadge"
+                    text="OFFLINE"
+                    color="0xEBEBEB" />
                 <MaskGroup
                     id="RoundedMaskGroup"
                     maskUri="pkg:/images/circlemask_large.png">
@@ -43,14 +34,23 @@
                         loadHeight="160"
                         uri="" />
                 </MaskGroup>
-            </Rectangle>
+            </Poster>
             <Label
                 id="UsernameLabel"
                 horizAlign="center"
                 wrap="true"
                 maxLines="2"
-                lineSpacing="-6">
-                <Font role="font" uri="pkg:/fonts/NotoSans-Regular.ttf" size="32" />
+                color="0xEBEBEB"
+                translation="[20, 0]">
+                <Font role="font" uri="pkg:/fonts/Barlow-SemiBold.ttf" size="32" />
+            </Label>
+            <Label
+                id="GameLabel"
+                horizAlign="center"
+                maxLines="1"
+                color="0xC0C0C0"
+                translation="[20, 0]">
+                <Font role="font" uri="pkg:/fonts/Barlow-Regular.ttf" size="24" />
             </Label>
         </LayoutGroup>
     </children>

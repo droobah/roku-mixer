@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="SideBar" extends="Group">
+    <children>
+        <Rectangle
+            id="BackgroundRectangle"
+            width="136"
+            height="1080"
+            color="0x29374A" />
+
+        <SimpleLabel
+            id="Logo"
+            text="m"
+            color="0x10D3FE"
+            vertOrigin="center"
+            horizOrigin="center"
+            translation="[68, 78]" />
+        <SimpleLabel
+            id="LogoExpanded"
+            text="mixer"
+            color="0x10D3FE"
+            vertOrigin="center"
+            horizOrigin="center"
+            visible="false"
+            translation="[170, 78]" />
+
+        <MarkupList
+            id="MenuMarkupList"
+            itemComponentName="DynamicSideBarMenuItemComponent"
+            vertFocusAnimationStyle="floatingFocus"
+            focusBitmapUri="pkg:/images/sidebar_focus.png"
+            focusFootprintBlendColor="0x00000000"
+            rowSpacings="[12, 12, 12, 12, 206]"
+            itemSize="[340, 75]"
+            itemSpacing="[0, 12]"
+            translation="[0, 328]" />
+    </children>
+
+    <script type="text/brightscript" uri="SideBar.brs"/>
+    <script type="text/brightscript" uri="pkg:/source/Helpers.brs" />
+</component>

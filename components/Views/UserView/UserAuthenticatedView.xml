@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="UserView" extends="Group">
+<component name="UserAuthenticatedView" extends="Group">
     <children>
         <Label
-            text="UserView" />
+            text="UserAuthenticatedView" />
         <Button
             id="LogoutButton"
             text="Logout" />
     </children>
 
-    <script type="text/brightscript" uri="UserView.brs"/>
+    <script type="text/brightscript" uri="UserAuthenticatedView.brs"/>
     <script type="text/brightscript" uri="pkg:/components/MultiPurposeTask/MultiPurposeTaskMixin.brs"/>
     <script type="text/brightscript" uri="pkg:/components/Network/RequestMixin.brs"/>
     <script type="text/brightscript" uri="pkg:/components/AuthMixin.brs"/>

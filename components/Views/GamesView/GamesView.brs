@@ -6,7 +6,6 @@ Sub Init()
     m.canFetchData = true
     m.fetchingData = false
 
-    m.drawer = m.top.findNode("Drawer")
     m.gamesGridList = m.top.findNode("GamesGridList")
 
     m.gamesGridListContent = CreateObject("roSGNode", "ContentNode")
@@ -77,16 +76,6 @@ Function onKeyEvent(key, press) as Boolean
     ? ">>> GamesView >> OnkeyEvent"
 
     if not press then return false
-
-    if key = "left" and m.gamesGridList.isInFocusChain()
-        m.drawer.toggle = true
-        m.drawer.setFocus(true)
-        return true
-    else if (key = "right" or key = "back") and m.drawer.isInFocusChain()
-        m.drawer.toggle = false
-        m.gamesGridList.setFocus(true)
-        return true
-    end if
 
     return false
 End Function

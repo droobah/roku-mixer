@@ -10,10 +10,8 @@ Sub Init()
     m.perPage = 30
     m.canFetchData = true
 
-
     m.fetchingData = false
 
-    m.drawer = m.top.findNode("Drawer")
     m.browseGridList = m.top.findNode("BrowseGridList")
 
     m.browseGridListContent = CreateObject("roSGNode", "ContentNode")
@@ -43,6 +41,7 @@ End Sub
 
 Sub OnItemFocused(event as Object)
     index = event.getData()
+    ? "FOCUSED"; index
     isItemInLastRow = m.browseGridListContent.getChildCount() - index <= 3
     if isItemInLastRow
         FetchData()
@@ -83,16 +82,6 @@ Function onKeyEvent(key, press) as Boolean
     ? ">>> BrowseView >> OnkeyEvent"
 
     if not press then return false
-
-    if key = "left" and m.browseGridList.isInFocusChain()
-        m.drawer.toggle = true
-        m.drawer.setFocus(true)
-        return true
-    else if (key = "right" or key = "back") and m.drawer.isInFocusChain()
-        m.drawer.toggle = false
-        m.browseGridList.setFocus(true)
-        return true
-    end if
 
     return false
 End Function
