@@ -9,7 +9,11 @@
 
     <children>
         <Poster
-            id="BackgroundPoster" />
+            id="BackgroundPoster"
+            loadWidth="1784"
+            loadHeight="156"
+            loadDisplayMode="limitSize"
+            uri="" />
         <SimpleLabel
             id="TitleLabel"
             fontUri="pkg:/fonts/Rajdhani-Regular.ttf"

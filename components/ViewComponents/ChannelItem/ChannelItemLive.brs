@@ -49,8 +49,10 @@ Sub ContentChanged(event as Object)
 
     if content.type <> invalid
         m.gameLabel.text = content.type.name
+        m.gameLabel.scale = [1, 1]
     else
         m.gameLabel.text = ""
+        m.gameLabel.scale = [0, 0]
     end if
 
     if content.user = invalid or content.user.avatarUrl = invalid or content.user.avatarUrl = ""
@@ -82,10 +84,10 @@ Sub ShowFocus(event as Object)
 End Sub
 
 Function doScale(number as Integer, scaleFactor as Integer) as Integer
-  if scaleFactor = 0 or number = 0
-    return number
-  end if
+    if scaleFactor = 0 or number = 0
+        return number
+    end if
 
-  scaledValue = number - number / scaleFactor
-  return scaledValue
+    scaledValue = number - number / scaleFactor
+    return scaledValue
 End Function

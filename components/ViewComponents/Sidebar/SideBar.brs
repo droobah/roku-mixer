@@ -59,12 +59,13 @@ Sub Init()
     end for
 
     ' select default item
-    m.defaultSelection = 2
+    m.defaultSelection = 5
     m.menuMarkupList.jumpToItem = m.defaultSelection
     OnButtonClick(m.defaultSelection)
 
     m.top.observeField("focusedChild", "OnFocusedChildChange")
     m.menuMarkupList.observeField("itemSelected", "OnButtonClick")
+    m.global.observeFieldScoped("showSidebar", "OnShowSidebarChange")
 End Sub
 
 Sub OnFocusedChildChange()
@@ -94,6 +95,10 @@ Sub OnButtonClick(event as Dynamic)
     end for
 
     m.global.route = m.menuItems[index].routePath
+End Sub
+
+Sub OnShowSidebarChange(event as Object)
+    m.top.visible = event.getData()
 End Sub
 
 Function onKeyEvent(key as String, press as Boolean) as Boolean

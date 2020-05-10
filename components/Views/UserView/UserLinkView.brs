@@ -33,10 +33,10 @@ Sub OnNewCodeResponse(event as Object)
     if response.code = 200 and response.transformedResponse <> invalid and response.transformedResponse.handle <> invalid
         m.currentCode = response.transformedResponse.code
         m.currentHandle = response.transformedResponse.handle
-        m.codeLabel.text = m.currentCode
+        m.codeLabel.text = m.currentCode.Split("").Join(" ")
         m.pollTimer.control = "start"
     else
-        m.codeLabel.text = "COD_EERR_TRYAGAIN"
+        m.codeLabel.text = "CODE_ERR"
     end if
     m.requestingNewCode = false
 End Sub
@@ -53,7 +53,7 @@ Sub OnCheckHandleResponse(event as Object)
     if response.code = 403 or response.code = 404
         m.currentCode = invalid
         m.currentHandle = invalid
-        m.codeLabel.text = "EXPIRED_OR_DENIED_TRYAGAIN"
+        m.codeLabel.text = "EXP_OR_DEN"
         m.pollTimer.control = "stop"
     else if response.code = 200 and response.transformedResponse <> invalid and response.transformedResponse.code <> invalid
         m.pollTimer.control = "stop"
@@ -79,6 +79,20 @@ Sub OnExchangeTokenResponse(event as Object)
     else
         m.currentCode = invalid
         m.currentHandle = invalid
-        m.codeLabel.text = "EXCHANGE_ERR_TRYAGAIN"
+        m.codeLabel.text = "EXCH_ERR"
     end if
 End Sub
+
+Function onKeyEvent(key as String, press as Boolean) as Boolean
+    ? ">>> UserLinkView >> OnkeyEvent"
+
+    ' Handle only key release event
+    if not press then return false
+
+    if key = "options" and not m.requestingNewCode
+        RequestNewCode()
+        return true
+    end if
+
+    return false
+End Function

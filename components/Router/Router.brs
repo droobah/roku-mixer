@@ -203,6 +203,10 @@ sub AddScreen(node, topLevelNode, nonDuplicatePreviousRoute)
             end if
         end if
     end if
+
+    ' hide sidebar on fullscreen route
+    m.global.showSidebar = not node.matchingRoute.fullscreen
+
     ' insert below loading spinner
     m.top.insertChild(node, m.top.getChildCount() - 1)
     node.setFocus(true)
@@ -224,6 +228,10 @@ sub RemoveScreen(node as object, showPrev = true as boolean, updateRoute = true 
                 if updateRoute
                     m.global.currentRoute = prev.matchingRoute
                 end if
+
+                ' restore sidebar state (visibility)
+                m.global.showSidebar = not prev.matchingRoute.fullscreen
+
                 prev.visible = true
                 prev.setFocus(true)
             end if

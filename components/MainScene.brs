@@ -15,6 +15,7 @@ Sub Init()
     m.global.addField("routeBack", "boolean", true)
     m.global.addField("currentRoute", "assocarray", true)
     m.global.addField("stopPlayer", "boolean", true)
+    m.global.addField("showSidebar", "boolean", true)
     m.global.addFields({
         "scaleFactor": 0,
         "videoPlaying": false,
@@ -80,7 +81,8 @@ Sub ReInitialize()
         "scaleFactor": scaleFactor,
         "stopPlayer": false,
         "videoPlaying": false,
-        "defaultPage": ""
+        "defaultPage": "",
+        "showSidebar": true
     })
 End Sub
 

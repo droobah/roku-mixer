@@ -1,30 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="UserLinkView" extends="Group">
     <children>
-        <LayoutGroup
-            layoutDirection="vert"
-            horizAlignment="center"
-            vertAlignment="center"
-            itemSpacings="[18, 0]"
-            translation="[960, 498]">
-            <SimpleLabel
-                text="Go to 'https://mixer.com/go' and enter the following code:" />
-            <SimpleLabel
-                id="CodeLabel"
-                text=""
-                fontUri="pkg:/fonts/BarlowSemiCondensed-Bold.ttf"
-                fontSize="140" />
-            <LoadingIndicator
-                id="LoadingIndicator"
-                imageUri="pkg:/images/spinner.png"
-                clockwise="true"
-                spinInterval="1"
-                fadeInterval="0.2"
-                width="60"
-                height="60"
-                centered="false"
-                backgroundOpacity="0" />
-        </LayoutGroup>
+        <PageHeader
+            backgroundUri="pkg:/images/page_header_background.png"
+            title="Account Linking"
+            width="1784"
+            height="156" />
+        <SimpleLabel
+            text="To link your Mixer account with this app, follow the steps:"
+            fontUri="pkg:/fonts/Rajdhani-Regular.ttf"
+            fontSize="50"
+            color="0xE9E9E9"
+            translation="[60, 243]" />
+        <Label
+            text="1. Go to https://mixer.com/go using your PC or phone."
+            width="568"
+            wrap="true"
+            color="0xDDDDDD"
+            translation="[60, 438]">
+            <Font role="font" uri="pkg:/fonts/Rajdhani-Regular.ttf" size="40" />
+        </Label>
+        <Poster
+            uri="pkg:/images/link_url.png"
+            width="680"
+            height="80"
+            translation="[60, 594]" />
+        <Rectangle
+            width="1"
+            height="451"
+            color="0xDDDDDD"
+            translation="[831, 386]" />
+        <SimpleLabel
+            text="2. Enter the following code when asked."
+            fontUri="pkg:/fonts/Rajdhani-Regular.ttf"
+            fontSize="40"
+            color="0xDDDDDD"
+            translation="[953, 438]" />
+        <SimpleLabel
+            id="CodeLabel"
+            text="* * * * * *"
+            fontUri="pkg:/fonts/Rajdhani-Bold.ttf"
+            fontSize="144"
+            color="0xEBEBEB"
+            translation="[953, 545]" />
+        <LoadingIndicator
+            id="LoadingIndicator"
+            imageUri="pkg:/images/spinner.png"
+            clockwise="true"
+            spinInterval="1"
+            fadeInterval="0.2"
+            width="60"
+            height="60"
+            centered="false"
+            backgroundOpacity="0"
+            translation="[1230, 588]" />
+        <SimpleLabel
+            text="Press * to get a new code"
+            fontUri="pkg:/fonts/Rajdhani-Regular.ttf"
+            fontSize="30"
+            color="0x9D9D9D"
+            translation="[1342, 785]" />
+
         <Timer
             id="PollTimer"
             duration="6"

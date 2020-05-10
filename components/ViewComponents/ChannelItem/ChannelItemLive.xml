@@ -65,7 +65,8 @@
                 </MaskGroup>
                 <LayoutGroup
                     layoutDirection="vert"
-                    translation="[70, 0]">
+                    vertAlignment="center"
+                    translation="[70, 30]">
                     <Label
                         id="UsernameLabel"
                         vertAlign="center"
@@ -77,7 +78,8 @@
                         id="GameLabel"
                         vertAlign="center"
                         maxLines="1"
-                        color="0xC0C0C0">
+                        color="0xC0C0C0"
+                        scale="[1, 1]">
                         <Font role="font" uri="pkg:/fonts/Barlow-Regular.ttf" size="24" />
                     </Label>
                 </LayoutGroup>

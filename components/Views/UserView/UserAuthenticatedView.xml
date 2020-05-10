@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="UserAuthenticatedView" extends="Group">
     <children>
-        <Label
-            text="UserAuthenticatedView" />
-        <Button
-            id="LogoutButton"
-            text="Logout" />
+        <PageHeader
+            backgroundUri="pkg:/images/page_header_background.png"
+            title="Account Linking"
+            width="1784"
+            height="156" />
+        <CustomButtonGroup
+            id="ButtonGroup"
+            itemComponentName="GenericButton"
+            direction="horiz"
+            spacing="40"
+            height="60"
+            translation="[60, 244]" />
+        <SimpleLabel
+            text="Currently logged in as:"
+            fontUri="pkg:/fonts/Rajdhani-Regular.ttf"
+            fontSize="50"
+            color="0xE9E9E9"
+            translation="[60, 395]" />
+        <MaskGroup
+            id="RoundedMaskGroup"
+            maskSize="[160, 160]"
+            maskUri="pkg:/images/circlemask_large.png"
+            translation="[60, 506]">
+            <Poster
+                id="AvatarPoster"
+                width="160"
+                height="160"
+                loadDisplayMode="limitSize"
+                loadWidth="160"
+                loadHeight="160"
+                uri="" />
+        </MaskGroup>
+        <SimpleLabel
+            id="UsernameLabel"
+            text=""
+            fontUri="pkg:/fonts/Barlow-SemiBold.ttf"
+            fontSize="56"
+            color="0xEBEBEB"
+            vertOrigin="center"
+            translation="[240, 586]" />
     </children>
 
     <script type="text/brightscript" uri="UserAuthenticatedView.brs"/>
     <script type="text/brightscript" uri="pkg:/components/MultiPurposeTask/MultiPurposeTaskMixin.brs"/>
     <script type="text/brightscript" uri="pkg:/components/Network/RequestMixin.brs"/>
     <script type="text/brightscript" uri="pkg:/components/AuthMixin.brs"/>
+    <script type="text/brightscript" uri="pkg:/source/Helpers.brs"/>
 </component>

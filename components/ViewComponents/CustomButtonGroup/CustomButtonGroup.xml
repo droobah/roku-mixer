@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="CustomButtonGroup" extends="Group">
+    <interface>
+        <field id="buttons" type="array" />
+        <field id="direction" type="string" alias="ButtonGroup.layoutDirection" />
+        <field id="itemComponentName" type="string" />
+        <field id="maxWidth" type="float" />
+        <field id="height" type="float" value="-1" />
+        <field id="spacing" type="integer" value="0" />
+        <field id="radio" type="boolean" value="false" />
+
+        <field id="buttonFocused" type="integer" value="0" />
+        <field id="buttonSelected" type="integer" value="0" alwaysNotify="true" />
+    </interface>
+
+    <children>
+        <LayoutGroup
+            id="ButtonGroup">
+        </LayoutGroup>
+    </children>
+
+    <script type="text/brightscript" uri="CustomButtonGroup.brs"/>
+</component>

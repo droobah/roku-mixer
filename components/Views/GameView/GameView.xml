@@ -5,14 +5,10 @@
         <field id="modelData" type="node" onChange="OnModelSet" />
     </interface>
     <children>
-        <Rectangle
-            width="1920"
-            height="1080"
-            color="0x000000" />
         <Poster
             id="CoverPoster"
             width="1920"
-            height="400"
+            height="600"
             loadWidth="960"
             loadHeight="540"
             loadDisplayMode="scaleToZoom"
@@ -21,32 +17,53 @@
             translation="[0, 0]" />
         <Poster
             width="1920"
-            height="400"
+            height="600"
             uri="pkg:/images/game_cover_gradient.png"
             translation="[0, 0]" />
-        <Poster
-            id="GamePoster"
-            width="212"
-            height="212"
-            translation="[72, 44]" />
-        <SimpleLabel
-            id="NameLabel"
-            fontUri="pkg:/fonts/BarlowSemiCondensed-SemiBold.ttf"
-            fontSize="42"
-            translation="[314, 44]" />
-        <Label
-            id="DescriptionLabel"
-            width="1534"
-            wrap="true"
-            maxLines="4"
-            lineSpacing="0"
-            translation="[314, 128]">
-            <Font role="font" uri="pkg:/fonts/BarlowSemiCondensed-Regular.ttf" size="26" />
-        </Label>
+        <Group
+            id="HeaderContent"
+            translation="[60, 60]">
+            <MaskGroup
+                id="ThumbnailRoundedMaskGroup"
+                maskSize="[300, 300]"
+                maskUri="pkg:/images/game_rounded_mask.png">
+                <Poster
+                    id="GamePoster"
+                    width="300"
+                    height="300" />
+            </MaskGroup>
+            <LayoutGroup
+                id="TitleGroup"
+                layoutDirection="horiz"
+                vertAlignment="custom"
+                itemSpacings="[28]"
+                translation="[340, 0]">
+                <SimpleLabel
+                    id="NameLabel"
+                    fontUri="pkg:/fonts/Rajdhani-Medium.ttf"
+                    fontSize="70"
+                    color="0xEBEBEB" />
+                <StatusBadge
+                    id="ViewerCountBadge"
+                    icon="pkg:/images/icons/eye-f.svg.png"
+                    color="0xEBEBEB"
+                    translation="[0, 23]" />
+            </LayoutGroup>
+            <Label
+                id="DescriptionLabel"
+                width="1460"
+                wrap="true"
+                maxLines="6"
+                lineSpacing="-3"
+                color="0xDDDDDD"
+                translation="[340, 96]">
+                <Font role="font" uri="pkg:/fonts/Barlow-Regular.ttf" size="28" />
+            </Label>
+        </Group>
         <EnhancedMarkupGrid
             id="GameStreamsGridList"
             itemSize="[564, 462]"
-            itemSpacing="[42, 81]"
+            itemSpacing="[54, 90]"
             focusSize="[564, 318]"
             numColumns="3"
             numRows="2"
@@ -54,10 +71,10 @@
             scrollSpeed="5"
             focusBitmapUri="pkg:/images/rounded_focus_$$RES$$.9.png"
             drawFocusFeedback="true"
-            translation="[60, 330]" />
+            translation="[60, 480]" />
 
         <Animation
-            id="FadeInAnimation"
+            id="CoverFadeInAnimation"
             repeat="false"
             easeFunction="linear"
             duration="0.3"
@@ -67,6 +84,71 @@
                 key="[0, 1]"
                 fieldToInterp="CoverPoster.opacity"/>
         </Animation>
+
+        <ParallelAnimation
+            id="HeaderShrinkAnimation">
+            <Animation
+                duration="0.7"
+                easeFunction="outQuartic"
+                optional="true">
+                <Vector2DFieldInterpolator
+                    key="[0, 1]"
+                    keyValue="[ [1.0, 1.0], [0.4, 0.4] ]"
+                    fieldToInterp="GamePoster.scale" />
+                <Vector2DFieldInterpolator
+                    id="MaskGroupShrinkInterp"
+                    key="[0, 1]"
+                    keyValue="[ [300, 300], [120, 120] ]"
+                    fieldToInterp="ThumbnailRoundedMaskGroup.maskSize" />
+                <Vector2DFieldInterpolator
+                    key="[0, 1]"
+                    keyValue="[ [340, 0], [160, 15] ]"
+                    fieldToInterp="TitleGroup.translation" />
+                <FloatFieldInterpolator
+                    key="[0, 0.4]"
+                    keyValue="[ 1, 0 ]"
+                    fieldToInterp="DescriptionLabel.opacity" />
+                <Vector2DFieldInterpolator
+                    key="[0, 1]"
+                    keyValue="[ [60, 480], [60, 260] ]"
+                    fieldToInterp="GameStreamsGridList.translation" />
+            </Animation>
+        </ParallelAnimation>
+
+        <SequentialAnimation
+            id="HeaderExpandAnimation">
+            <Animation
+                duration="0.7"
+                easeFunction="outQuartic"
+                optional="true">
+                <Vector2DFieldInterpolator
+                    key="[0, 1]"
+                    keyValue="[ [0.4, 0.4], [1.0, 1.0] ]"
+                    fieldToInterp="GamePoster.scale" />
+                <Vector2DFieldInterpolator
+                    id="MaskGroupExpandInterp"
+                    key="[0, 1]"
+                    keyValue="[ [120, 120], [300, 300] ]"
+                    fieldToInterp="ThumbnailRoundedMaskGroup.maskSize" />
+                <Vector2DFieldInterpolator
+                    key="[0, 1]"
+                    keyValue="[ [160, 15], [340, 0] ]"
+                    fieldToInterp="TitleGroup.translation" />
+                <Vector2DFieldInterpolator
+                    key="[0, 1]"
+                    keyValue="[ [60, 260], [60, 480] ]"
+                    fieldToInterp="GameStreamsGridList.translation" />
+            </Animation>
+            <Animation
+                duration="0.1"
+                easeFunction="linear"
+                optional="true">
+                <FloatFieldInterpolator
+                    key="[0, 1]"
+                    keyValue="[ 0, 1 ]"
+                    fieldToInterp="DescriptionLabel.opacity" />
+            </Animation>
+        </SequentialAnimation>
     </children>
 
     <script type="text/brightscript" uri="GameView.brs"/>

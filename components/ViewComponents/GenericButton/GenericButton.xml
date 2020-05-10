@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="GenericButton" extends="Group">
+
+    <interface>
+        <field id="data" type="assocarray" />
+        <field id="processing" type="boolean" value="false" />
+        <field id="alignment" type="string" value="left" alias="TextContainer.horizAlignment" />
+        <field id="isSelected" type="boolean" alwaysNotify="true" value="false" />
+        <field id="noClickHandler" type="boolean" value="false" />
+        <field id="width" type="float" value="-1" />
+        <field id="height" type="float" />
+    </interface>
+
+    <children>
+        <Rectangle
+            id="BackgroundRectangle"
+            color="0x3A5D7D"
+            height="72">
+            <LayoutGroup
+                id="TextContainer"
+                layoutDirection="horiz"
+                horizAlignment="left"
+                vertAlignment="custom"
+                itemSpacings="[10]"
+                translation="[30, 0]">
+                <SimpleLabel
+                    id="Label"
+                    fontUri="pkg:/fonts/Rajdhani-Regular.ttf"
+                    fontSize="30" />
+            </LayoutGroup>
+
+            <Poster
+                id="LoadingIndicator"
+                uri="pkg:/images/ring_loader_white.png"
+                width="50"
+                height="50"
+                scaleRotateCenter="[25, 25]"
+                visible="false"
+                translation="[0, 11]" />
+        </Rectangle>
+
+        <Animation
+            id="LoadingIndicatorAnimation"
+            repeat="true"
+            easeFunction="linear"
+            optional="true">
+            <FloatFieldInterpolator
+                key="[0, 1]"
+                keyValue="[0, 6.283]"
+                fieldToInterp="LoadingIndicator.rotation"/>
+        </Animation>
+    </children>
+
+    <script type="text/brightscript" uri="GenericButton.brs"/>
+</component>

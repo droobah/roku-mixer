@@ -13,7 +13,7 @@ Sub OnProfileChange(event as Object)
     isLoggedIn = m.global.auth.access_token <> ""
 
     if isLoggedIn and profile.username <> ""
-        m.textLabel.text = profile.username + "TESTSESETSETSETSTE"
+        m.textLabel.text = profile.username
         if profile.avatarUrl <> ""
             m.iconPoster.uri = profile.avatarUrl
         else
@@ -23,7 +23,7 @@ Sub OnProfileChange(event as Object)
         if m.top.itemContent.itemIconUri <> invalid and m.top.itemContent.itemIconUri <> ""
             m.iconPoster.uri = m.top.itemContent.itemIconUri
         end if
-        m.textLabel.text = m.top.itemContent.text
+        m.textLabel.text = m.top.itemContent.itemText
     end if
 End Sub
 

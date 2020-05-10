@@ -9,14 +9,29 @@ Sub Init()
     m.fetchingData = false
 
     m.coverPoster = m.top.findNode("CoverPoster")
-    m.coverPosterFadeInAnimation = m.top.findNode("FadeInAnimation")
+    m.coverPosterFadeInAnimation = m.top.findNode("CoverFadeInAnimation")
     m.gamePoster = m.top.findNode("GamePoster")
+    m.viewerCountBadge = m.top.findNode("ViewerCountBadge")
     m.nameLabel = m.top.findNode("NameLabel")
     m.descriptionLabel = m.top.findNode("DescriptionLabel")
     m.gameStreamsGridList = m.top.findNode("GameStreamsGridList")
+    m.thumbnailRoundedMaskGroup = m.top.findNode("ThumbnailRoundedMaskGroup")
+    m.maskGroupShrinkInterp = m.top.findNode("MaskGroupShrinkInterp")
+    m.maskGroupExpandInterp = m.top.findNode("MaskGroupExpandInterp")
+    m.headerShrinkAnimation = m.top.findNode("HeaderShrinkAnimation")
+    m.headerExpandAnimation = m.top.findNode("HeaderExpandAnimation")
+
+    m.headerShrinked = false
 
     m.gameStreamsGridListContent = CreateObject("roSGNode", "ContentNode")
     m.gameStreamsGridList.content = m.gameStreamsGridListContent
+
+    ' correctly set rounded maskgroup for 720p UI devices
+    maskSize = doScale(300, m.global.scaleFactor)
+    maskSizeShrinked = doScale(120, m.global.scaleFactor)
+    m.thumbnailRoundedMaskGroup.maskSize = [maskSize, maskSize]
+    m.maskGroupShrinkInterp.keyValue = [[maskSize, maskSize], [maskSizeShrinked, maskSizeShrinked]]
+    m.maskGroupExpandInterp.keyValue = [[maskSizeShrinked, maskSizeShrinked], [maskSize, maskSize]]
 
     m.top.observeField("focusedChild", "OnFocusedChildChange")
     m.gameStreamsGridList.observeField("itemSelected", "OnItemSelected")
@@ -36,6 +51,12 @@ Sub OnModelSet(event as Object)
     if modelData.backgroundUrl <> invalid and modelData.backgroundUrl <> ""
         m.coverPoster.observeField("loadStatus", "OnCoverPosterLoadStatusChange")
         m.coverPoster.uri = modelData.backgroundUrl
+    end if
+
+    if modelData.viewersCurrent <> invalid
+        m.viewerCountBadge.text = modelData.viewersCurrent.ToStr()
+    else
+        m.viewerCountBadge.text = ""
     end if
 
     m.nameLabel.text = modelData.name
@@ -70,6 +91,17 @@ End Sub
 
 Sub OnItemFocused(event as Object)
     index = event.getData()
+
+    if index <= 2 and m.headerShrinked
+        m.headerShrinkAnimation.control = "finish"
+        m.headerExpandAnimation.control = "start"
+        m.headerShrinked = false
+    else if index >= 3 and not m.headerShrinked
+        m.headerShrinkAnimation.control = "finish"
+        m.headerShrinkAnimation.control = "start"
+        m.headerShrinked = true
+    end if
+
     isItemInLastRow = m.gameStreamsGridListContent.getChildCount() - index <= 6
     if isItemInLastRow
         FetchData()
@@ -104,15 +136,19 @@ Sub FetchDataCallback(event as Object)
     m.canFetchData = hasNextPage
 End Sub
 
+Function doScale(number as Integer, scaleFactor as Integer) as Integer
+    if scaleFactor = 0 or number = 0
+        return number
+    end if
+
+    scaledValue = number - number / scaleFactor
+    return scaledValue
+End Function
+
 Function onKeyEvent(key, press) as Boolean
     ? ">>> GameView >> OnkeyEvent"
 
     if not press then return false
-
-    if key = "back" and m.gameStreamsGridList.isInFocusChain() and m.gameStreamsGridList.itemFocused >= 3
-        m.gameStreamsGridList.jumpToItem = 0
-        return true
-    end if
 
     return false
 End Function
