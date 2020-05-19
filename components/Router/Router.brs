@@ -37,7 +37,7 @@ sub Init()
             topLevel: true,
         },
         {
-            path: "/stream/:token",
+            path: "/stream/:channelId",
             componentName: "StreamView",
             fullscreen: true,
             topLevel: false,
@@ -113,13 +113,15 @@ end function
 function mapComponentParams(route as string, matchingRoute as object) as object
     routeComponent = CreateObject("roSGNode", matchingRoute.componentName)
 
+    routeParts = route.Split("/")
+    routeParts.Shift()
     matchingRouteParts = matchingRoute.path.Split("/")
     matchingRouteParts.Shift()
     for i = 0 to matchingRouteParts.Count() - 1
         part = matchingRouteParts[i]
         if part.Left(1) = ":"
             paramName = part.Mid(1)
-            routeComponent[paramName] = matchingRoute.path.Split("/")[i]
+            routeComponent[paramName] = routeParts[i]
         end if
     end for
 

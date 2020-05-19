@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="StreamView" extends="BaseView">
+    <interface>
+        <field id="channelId" type="string" onChange="OnChannelIdSet" />
+    </interface>
+    <children>
+        <Poster
+            id="CoverPoster"
+            width="1920"
+            height="600"
+            loadWidth="960"
+            loadHeight="540"
+            loadDisplayMode="scaleToZoom"
+            uri=""
+            opacity="0"
+            translation="[0, 0]" />
+        <Poster
+            width="1920"
+            height="600"
+            uri="pkg:/images/stream_cover_gradient.png"
+            translation="[0, 0]" />
+        <Group
+            id="HeaderContent"
+            translation="[60, 60]">
+            <MaskGroup
+                id="ThumbnailRoundedMaskGroup"
+                maskSize="[256, 256]"
+                maskUri="pkg:/images/game_rounded_mask.png">
+                <Poster
+                    id="AvatarPoster"
+                    width="256"
+                    height="256" />
+            </MaskGroup>
+            <SimpleLabel
+                id="NameLabel"
+                fontUri="pkg:/fonts/Rajdhani-Medium.ttf"
+                fontSize="70"
+                color="0xEBEBEB"
+                translation="[296, 0]" />
+            <Label
+                id="DescriptionLabel"
+                width="1504"
+                wrap="true"
+                maxLines="3"
+                lineSpacing="-3"
+                color="0xDDDDDD"
+                translation="[296, 96]">
+                <Font role="font" uri="pkg:/fonts/Barlow-Regular.ttf" size="28" />
+            </Label>
+        </Group>
+
+        <VerticalScroller
+            id="VerticalScroller"
+            itemSpacing="[82]"
+            clippingRect="[0, 0, 1920, 688]"
+            translation="[0, 392]" />
+
+        <Animation
+            id="CoverFadeInAnimation"
+            repeat="false"
+            easeFunction="linear"
+            duration="0.3"
+            optional="true">
+            <FloatFieldInterpolator
+                keyValue="[0, 1]"
+                key="[0, 1]"
+                fieldToInterp="CoverPoster.opacity"/>
+        </Animation>
+    </children>
+
+    <script type="text/brightscript" uri="StreamView.brs"/>
+</component>

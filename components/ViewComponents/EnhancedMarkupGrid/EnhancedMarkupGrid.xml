@@ -7,8 +7,5 @@
         <field id="setLoading" type="bool" onChange="SetLoading" />
     </interface>
 
-    <children>
-    </children>
-
     <script type="text/brightscript" uri="EnhancedMarkupGrid.brs"/>
 </component>

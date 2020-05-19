@@ -8,6 +8,7 @@
             height="156" />
         <EnhancedMarkupGrid
             id="BrowseGridList"
+            itemComponentName="DynamicItemComponent"
             itemSize="[528, 500]"
             itemSpacing="[40, 105]"
             focusSize="[528, 297]"

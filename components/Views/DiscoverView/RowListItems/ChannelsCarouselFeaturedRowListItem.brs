@@ -1,9 +1,7 @@
 Sub Init()
-    ' ? "[ChannelItemLive] Init()"
-    m.top.opacity = 0.6
+    ' ? "[ChannelsMarkupGridItemLive] Init()"
 
     m.thumbnailPoster = m.top.findNode("ThumbnailPoster")
-    m.titleLabel = m.top.findNode("TitleLabel")
     m.avatarPoster = m.top.findNode("AvatarPoster")
     m.usernameLabel = m.top.findNode("UsernameLabel")
     m.gameLabel = m.top.findNode("GameLabel")
@@ -11,34 +9,40 @@ Sub Init()
     m.viewerCountBadge = m.top.findNode("ViewerCountBadge")
     m.avatarRoundedMaskGroup = m.top.findNode("AvatarRoundedMaskGroup")
     m.thumbnailRoundedMaskGroup = m.top.findNode("ThumbnailRoundedMaskGroup")
+    m.gradient = m.top.findNode("Gradient")
 
     ' correctly set rounded maskgroup for 720p UI devices
     maskSize = doScale(60, m.global.scaleFactor)
     m.avatarRoundedMaskGroup.maskSize = [maskSize, maskSize]
+    
+    m.top.observeField("width", "WidthChanged")
+    m.top.observeField("height", "HeightChanged")
+    m.top.observeField("itemContent", "ContentChanged")
 End Sub
 
 Sub WidthChanged(event as Object)
     width = event.getData()
 
-    m.thumbnailRoundedMaskGroup.maskSize = [doScale(width, m.global.scaleFactor), doScale(width / 16 * 9, m.global.scaleFactor)]
+    m.thumbnailRoundedMaskGroup.maskSize = [doScale(width, m.global.scaleFactor), m.thumbnailRoundedMaskGroup.maskSize[1]]
     m.thumbnailPoster.width = width
-    m.thumbnailPoster.height = width / 16 * 9
+    m.gradient.width = width
     m.badgeLayoutGroup.translation = [width - 20, 20]
     ' set width with padding
-    m.titleLabel.width = width - 20 - 20
     m.usernameLabel.width = width - 70 - 20 - 20
     m.gameLabel.width = width - 70 - 20 - 20
 End Sub
 
 Sub HeightChanged(event as Object)
+    height = event.getData()
+
+    m.thumbnailPoster.height = height
+    m.thumbnailRoundedMaskGroup.maskSize = [m.thumbnailRoundedMaskGroup.maskSize[0], doScale(height, m.global.scaleFactor)]
 End Sub
 
 Sub ContentChanged(event as Object)
     content = event.getData()
 
     m.usernameLabel.text = content.token
-    m.titleLabel.text = content.name
-
     m.thumbnailPoster.uri = content.streamThumbnailSmall
 
     if content.viewersCurrent <> invalid
@@ -55,32 +59,7 @@ Sub ContentChanged(event as Object)
         m.gameLabel.scale = [0, 0]
     end if
 
-    if content.user = invalid or content.user.avatarUrl = invalid or content.user.avatarUrl = ""
-        m.avatarPoster.uri = "pkg:/images/default_avatar.png"
-    else
-        m.avatarPoster.uri = content.user.avatarUrl
-    end if
-End Sub
-
-Sub GridFocusChanged()
-    if not m.top.gridHasFocus and m.top.focusPercent > 0.0
-        m.top.opacity = 0.6
-    end if
-End Sub
-
-Sub ItemFocusChanged(event as Object)
-    hasFocus = event.getData()
-
-    if hasFocus
-        m.top.opacity = 1
-    end if
-End Sub
-
-Sub ShowFocus(event as Object)
-    if not m.top.gridHasFocus then return
-
-    percent = event.getData()
-    m.top.opacity = percent / 2.5 + 0.6
+    m.avatarPoster.uri = "https://mixer.com/api/v1/users/" + content.userId.ToStr() + "/avatar?w=60&h=60"
 End Sub
 
 Function doScale(number as Integer, scaleFactor as Integer) as Integer

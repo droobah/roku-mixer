@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="SettingsView" extends="BaseView">
     <children>
-        <Label
-            text="SettingsView" />
+        <PageHeader
+            backgroundUri="pkg:/images/page_header_background.png"
+            title="Settings"
+            width="1784"
+            height="156" />
+        <SimpleLabel
+            text="Work in progress..."
+            fontUri="pkg:/fonts/Rajdhani-Regular.ttf"
+            fontSize="50"
+            color="0xE9E9E9"
+            translation="[60, 243]" />
     </children>
     <script type="text/brightscript" uri="SettingsView.brs"/>
 </component>

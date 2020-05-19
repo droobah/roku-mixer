@@ -61,6 +61,13 @@ Sub FetchDataCallback(event as Object)
 
     if response.transformedResponse <> invalid
         responseItems = response.transformedResponse.getChildren(-1, 0)
+
+        for each item in responseItems
+            item.addFields({
+                dynamicComponentName: "GamesMarkupGridItem"
+            })
+        end for
+
         if responseItems.Count() < m.perPage then hasNextPage = false
         m.gamesGridListContent.appendChildren(responseItems)
 

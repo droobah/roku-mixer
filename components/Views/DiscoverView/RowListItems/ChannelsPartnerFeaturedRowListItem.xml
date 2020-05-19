@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ChannelsPartnerFeaturedRowListItem" extends="ExtendableRowListItem">
+    <children>
+        <MaskGroup
+            id="ThumbnailRoundedMaskGroup"
+            maskUri="pkg:/images/partner_rounded_mask.png">
+            <Poster
+                id="ThumbnailPoster">
+            </Poster>
+            <Poster
+                id="Gradient"
+                height="160"
+                uri="pkg:/images/featured_partner_gradient.png" />
+        </MaskGroup>
+
+        <Label
+            id="UsernameLabel"
+            horizAlign="center"
+            vertAlign="bottom"
+            wrap="true"
+            height="0"
+            numLines="2"
+            lineSpacing="0"
+            color="0xEBEBEB"
+            translation="[20, 0]">
+            <Font role="font" uri="pkg:/fonts/Rajdhani-Medium.ttf" size="36" />
+        </Label>
+    </children>
+
+    <script type="text/brightscript" uri="ChannelsPartnerFeaturedRowListItem.brs"/>
+</component>

@@ -2,6 +2,7 @@ Sub Init()
     m.backgroundRectangle = m.top.findNode("BackgroundRectangle")
     m.logo = m.top.findNode("Logo")
     m.logoExpanded = m.top.findNode("LogoExpanded")
+    m.logoExpandedAdditional = m.top.findNode("LogoExpandedAdditional")
     m.menuMarkupList = m.top.findNode("MenuMarkupList")
 
     m.menuMarkupListContent = CreateObject("roSGNode", "ContentNode")
@@ -59,7 +60,7 @@ Sub Init()
     end for
 
     ' select default item
-    m.defaultSelection = 5
+    m.defaultSelection = 0
     m.menuMarkupList.jumpToItem = m.defaultSelection
     OnButtonClick(m.defaultSelection)
 
@@ -73,11 +74,13 @@ Sub OnFocusedChildChange()
         m.backgroundRectangle.width = 340
         m.logo.visible = false
         m.logoExpanded.visible = true
+        m.logoExpandedAdditional.visible = true
         m.menuMarkupList.setFocus(true)
     else if not m.top.isInFocusChain()
         m.backgroundRectangle.width = 136
         m.logo.visible = true
         m.logoExpanded.visible = false
+        m.logoExpandedAdditional.visible = false
     end if
 End Sub
 

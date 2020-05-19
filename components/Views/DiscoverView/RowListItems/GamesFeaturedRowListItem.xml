@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="GamesViewListItem" extends="Group">
-    <interface>
-        <field id="width" type="float" onChange="WidthChanged" />
-        <field id="height" type="float" onChange="HeightChanged" />
-        <field id="index" type="integer" />
-        <field id="itemContent" type="node" onChange="ContentChanged" />
-        <field id="gridHasFocus" type="boolean" onChange="GridFocusChanged" />
-        <field id="itemHasFocus" type="boolean" onChange="ItemFocusChanged" />
-        <field id="focusPercent" type="float" onChange="ShowFocus" />
-    </interface>
-
+<component name="GamesFeaturedRowListItem" extends="ExtendableRowListItem">
     <children>
         <LayoutGroup
             layoutDirection="vert"
+            horizAlignment="custom"
             itemSpacings="[12, 0]">
             <MaskGroup
                 id="ThumbnailRoundedMaskGroup"
@@ -46,5 +37,5 @@
         </LayoutGroup>
     </children>
 
-    <script type="text/brightscript" uri="GamesViewListItem.brs"/>
+    <script type="text/brightscript" uri="GamesFeaturedRowListItem.brs"/>
 </component>

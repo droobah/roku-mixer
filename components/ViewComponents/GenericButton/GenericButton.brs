@@ -2,6 +2,7 @@ Sub Init()
     m.top.opacity = 0.5
 
     m.backgroundRectangle = m.top.findNode("BackgroundRectangle")
+    m.focusRectangle = m.top.findNode("FocusRectangle")
     m.textContainer = m.top.findNode("TextContainer")
     m.label = m.top.findNode("Label")
     m.loadingIndicator = m.top.findNode("LoadingIndicator")
@@ -19,8 +20,10 @@ End Sub
 Sub OnFocusedChildChange()
     if m.top.hasFocus()
         m.top.opacity = 1.0
+        m.focusRectangle.visible = true
     else
         m.top.opacity = 0.5
+        m.focusRectangle.visible = false
     end if
 End Sub
 
@@ -32,6 +35,7 @@ Sub OnHeightChange(event as Object)
     height = event.getData()
 
     m.backgroundRectangle.height = height
+    m.focusRectangle.height = height + 6
     m.label.translation = [m.label.translation[0], height / 2 - m.label.boundingRect().height / 2]
     ' m.textContainer.translation = [m.textContainer.translation[0], height / 2]
 
@@ -50,6 +54,7 @@ Sub AdjustWidth()
     end if
 
     m.backgroundRectangle.width = width
+    m.focusRectangle.width = width + 6
     m.loadingIndicator.translation = [(width - m.loadingIndicator.width) / 2, m.loadingIndicator.translation[1]]
 End Sub
 

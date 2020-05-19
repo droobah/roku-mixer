@@ -13,6 +13,11 @@
 
     <children>
         <Rectangle
+            id="FocusRectangle"
+            color="0xEBEBEB"
+            translation="[-3, -3]"
+            visible="false" />
+        <Rectangle
             id="BackgroundRectangle"
             color="0x3A5D7D"
             height="72">

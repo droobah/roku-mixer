@@ -4,13 +4,14 @@
         <field id="text" type="string" onChange="OnTextChange" />
         <field id="icon" type="string" onChange="OnIconChange" />
         <field id="color" type="color" onChange="OnColorChange" />
+        <field id="compact" type="boolean" onChange="OnCompactChange" />
     </interface>
 
     <children>
         <Rectangle
             id="WrapperRectangle"
             height="44"
-            color="0x000000CC">
+            color="0x000000E6">
             <Group
                 id="ContentGroup"
                 translation="[22, 0]">

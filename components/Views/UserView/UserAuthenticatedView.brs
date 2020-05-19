@@ -50,8 +50,8 @@ End Sub
 Sub OnGroupButtonSelected(event as Object)
     buttonIndex = event.getData()
 
-    if buttonIndex = 0
-        ? "VIEW MY PROFILE"
+    if buttonIndex = 0 and m.global.auth.userProfile.channel.id <> invalid
+        m.global.route = "/stream/" + m.global.auth.userProfile.channel.id.ToStr()
     else if buttonIndex = 1
         Logout()
     end if

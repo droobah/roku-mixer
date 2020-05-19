@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ChannelsCarouselFeaturedRowListItem" extends="ExtendableRowListItem">
+    <children>
+        <MaskGroup
+            id="ThumbnailRoundedMaskGroup"
+            maskUri="pkg:/images/channel_rounded_mask.png">
+            <Poster
+                id="ThumbnailPoster">
+            </Poster>
+            <Poster
+                id="Gradient"
+                height="174"
+                uri="pkg:/images/featured_carousel_gradient.png" />
+        </MaskGroup>
+
+        <Group
+            translation="[20, 20]">
+            <MaskGroup
+                id="AvatarRoundedMaskGroup"
+                maskOffset="[0, 0]"
+                translation="[0, 0]"
+                maskUri="pkg:/images/circlemask_small.png">
+                <Poster
+                    id="AvatarPoster"
+                    width="60"
+                    height="60"
+                    loadDisplayMode="limitSize"
+                    loadWidth="60"
+                    loadHeight="60"
+                    uri="" />
+            </MaskGroup>
+            <LayoutGroup
+                layoutDirection="vert"
+                vertAlignment="center"
+                translation="[70, 30]">
+                <Label
+                    id="UsernameLabel"
+                    vertAlign="center"
+                    maxLines="1"
+                    color="0xEBEBEB">
+                    <Font role="font" uri="pkg:/fonts/Barlow-SemiBold.ttf" size="28" />
+                </Label>
+                <Label
+                    id="GameLabel"
+                    vertAlign="center"
+                    maxLines="1"
+                    color="0xC0C0C0"
+                    scale="[1, 1]">
+                    <Font role="font" uri="pkg:/fonts/Barlow-Regular.ttf" size="24" />
+                </Label>
+            </LayoutGroup>
+        </Group>
+
+        <LayoutGroup
+            id="BadgeLayoutGroup"
+            layoutDirection="vert"
+            horizAlignment="right"
+            itemSpacings="[9]">
+            <StatusBadge
+                text="• LIVE"
+                color="0xF82727" />
+            <StatusBadge
+                id="ViewerCountBadge"
+                icon="pkg:/images/icons/eye-f.svg.png"
+                color="0xEBEBEB" />
+        </LayoutGroup>
+    </children>
+
+    <script type="text/brightscript" uri="ChannelsCarouselFeaturedRowListItem.brs"/>
+</component>

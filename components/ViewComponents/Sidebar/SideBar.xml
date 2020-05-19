@@ -22,6 +22,16 @@
             horizOrigin="center"
             visible="false"
             translation="[170, 78]" />
+        <Label
+            id="LogoExpandedAdditional"
+            text="not official btw &#xA; source on GitHub &#xA; kono0514/roku-mixer"
+            wrap="true"
+            width="300"
+            font="font:SmallestSystemFont"
+            lineSpacing="-1"
+            horizAlign="center"
+            visible="false"
+            translation="[20, 110]" />
 
         <MarkupList
             id="MenuMarkupList"

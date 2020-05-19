@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ClipModel" extends="ContentNode">
+    <interface>
+        <field id="model_id" type="integer" />
+        <field id="contentId" type="string" />
+        <field id="contentLocators" type="array" />
+        <field id="contentMaturity" type="integer" />
+        <field id="durationInSeconds" type="integer" />
+        <field id="expirationDate" type="string" />
+        <field id="uploadDate" type="string" />
+        <field id="ownerChannelId" type="integer" />
+        <field id="shareableId" type="string" />
+        <field id="streamerChannelId" type="integer" />
+        <field id="tags" type="array" />
+        <field id="title" type="string" />
+        <field id="typeId" type="integer" />
+        <field id="viewCount" type="integer" />
+    </interface>
+</component>

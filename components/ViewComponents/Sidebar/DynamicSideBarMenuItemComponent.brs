@@ -20,7 +20,6 @@ Sub ItemContentChanged(event as Object)
     reuseComponent = m.top.currentComponentName = dynamicComponentName
 
     if reuseComponent = false
-        ? "DESTROY! "; m.top.currentComponentName; " "; dynamicComponentName
         m.listItemComponent = invalid
         m.top.removeChildrenIndex(m.top.getChildCount(), 0)
         m.listItemComponent = CreateObject("roSGNode", dynamicComponentName)

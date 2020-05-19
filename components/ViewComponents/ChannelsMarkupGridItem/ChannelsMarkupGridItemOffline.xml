@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ChannelsMarkupGridItemOffline" extends="ExtendableMarkupGridItem">
+    <children>
+        <LayoutGroup
+            layoutDirection="vert"
+            itemSpacings="[20, 10]"
+            horizAlignment="custom">
+            <Poster
+                id="BackgroundPoster"
+                uri="pkg:/images/rounded_background_$$RES$$.9.png">
+                <StatusBadge
+                    id="StatusBadge"
+                    text="OFFLINE"
+                    color="0xEBEBEB" />
+                <MaskGroup
+                    id="RoundedMaskGroup"
+                    maskUri="pkg:/images/circlemask_large.png">
+                    <Poster
+                        id="AvatarPoster"
+                        width="160"
+                        height="160"
+                        loadDisplayMode="limitSize"
+                        loadWidth="160"
+                        loadHeight="160"
+                        uri="" />
+                </MaskGroup>
+            </Poster>
+            <Label
+                id="UsernameLabel"
+                horizAlign="center"
+                wrap="true"
+                maxLines="2"
+                color="0xEBEBEB"
+                translation="[20, 0]">
+                <Font role="font" uri="pkg:/fonts/Barlow-SemiBold.ttf" size="32" />
+            </Label>
+            <Label
+                id="GameLabel"
+                horizAlign="center"
+                maxLines="1"
+                color="0xC0C0C0"
+                translation="[20, 0]">
+                <Font role="font" uri="pkg:/fonts/Barlow-Regular.ttf" size="24" />
+            </Label>
+        </LayoutGroup>
+    </children>
+
+    <script type="text/brightscript" uri="ChannelsMarkupGridItemOffline.brs"/>
+</component>

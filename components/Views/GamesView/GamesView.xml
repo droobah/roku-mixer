@@ -8,6 +8,7 @@
             height="156" />
         <EnhancedMarkupGrid
             id="GamesGridList"
+            itemComponentName="DynamicItemComponent"
             itemSize="[300, 422]"
             itemSpacing="[41, 64]"
             focusSize="[300, 300]"

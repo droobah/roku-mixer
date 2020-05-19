@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="VerticalScroller" extends="Group">
+    <interface>
+        <field id="itemFocused" type="integer" value="-1" />
+        <field id="jumpToIndex" type="integer" onChange="OnJumpToIndexChange" />
+        <field id="animateToIndex" type="integer" onChange="OnAnimateToIndexChange" />
+        <field id="itemSpacing" type="array" />
+        <field id="addChildren" type="nodearray" />
+    </interface>
+
+    <children>
+        <Group
+            id="ContainerGroup" />
+
+        <Animation
+            id="Animation"
+            duration="0.3"
+            easeFunction="inOutExpo"
+            repeat="false">
+            <Vector2DFieldInterpolator
+                id="Interpolator"
+                key="[0.0, 1.0]"
+                keyValue="[ [0.0, 0.0], [0.0, 0.0] ]"
+                fieldToInterp="ContainerGroup.translation" />
+        </Animation>
+
+        <Timer
+            id="LongPressTickTimer"
+            duration="0.45"
+            repeat="true" />
+    </children>
+
+    <script type="text/brightscript" uri="VerticalScroller.brs"/>
+</component>

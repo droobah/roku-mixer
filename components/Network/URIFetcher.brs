@@ -188,24 +188,56 @@ Sub processResponse(msg as Object)
         return
     end if
 
+    headers = msg.GetResponseHeaders()
+
     if msg.getResponseCode() >= 400
         ? msg
         ? msg.getResponseCode()
         ? msg.GetFailureReason()
-        ? msg.getResponseHeaders()
+        ? headers
         ? msg.GetString()
+    end if
+
+    ' Link Headers that contains continuation links for paginated resulsts (there's no "continue" in brs, so bShrug)
+    links = {}
+    if headers.DoesExist("link")
+        parts = headers.Lookup("link").Split(",")
+        for each part in parts
+            segments = part.Split(";")
+            if segments.Count() >= 2
+                linkPart = segments[0].Trim()
+
+                if linkPart.Left(1) = "<" and linkPart.Right(1) = ">"
+                    linkPart = linkPart.Mid(1, linkPart.Len() - 2)
+
+                    for i = 1 to segments.Count() - 1
+                        rel = segments[i].Trim().Split("=")
+                        if rel.Count() >= 2
+                            relValue = rel[1]
+
+                            if relValue.Left(2) = """" and relValue.Right(2) = """"
+                                relValue = relValue.Mid(2, relValue.Len() - 3)
+                            end if
+
+                            links.AddReplace(relValue, linkPart)
+                        end if
+                    end for
+                end if
+            end if
+        end for
     end if
 
     content = msg.GetString()
 
     transformedResponse = invalid
-    if responseTransformer <> invalid and responseTransformer <> "" and msg.getResponseCode() <> 204
+    if responseTransformer <> invalid and responseTransformer <> "" and msg.getResponseCode() <> 204 and msg.getResponseCode() < 500
         transformedResponse = CallTransformerFunction(responseTransformer, content)
     end if
 
     result = {
         code: msg.getResponseCode(),
-        headers: msg.getResponseHeaders(),
+        headers: headers,
+        links: links,
         content: content,
         transformedResponse: transformedResponse,
         callbackParams: callbackParams

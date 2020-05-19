@@ -62,6 +62,7 @@
         </Group>
         <EnhancedMarkupGrid
             id="GameStreamsGridList"
+            itemComponentName="DynamicItemComponent"
             itemSize="[564, 462]"
             itemSpacing="[54, 90]"
             focusSize="[564, 318]"

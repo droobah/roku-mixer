@@ -1,6 +1,4 @@
 Sub Init()
-    m.top.itemComponentName = "DynamicItemComponent"
-
     m.loaderReference = invalid
 
     m.originalItemSize = [0, 0]

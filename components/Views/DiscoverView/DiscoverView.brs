@@ -1,10 +1,7 @@
 Sub Init()
     m.fetchDataTries = 0
 
-    m.featuredCarouselTargetList = m.top.findNode("FeaturedCarouselTargetList")
-    m.featuredCarouselTargetListContent = CreateObject("roSGNode", "ContentNode")
-    m.featuredCarouselTargetList.content = m.featuredCarouselTargetListContent
-
+    m.verticalScroller = m.top.findNode("VerticalScroller")
     m.top.observeField("focusedChild", "OnFocusedChildChange")
 
     FetchData()
@@ -12,119 +9,19 @@ End Sub
 
 Sub OnFocusedChildChange()
     if m.top.hasFocus()
-        m.featuredCarouselTargetList.setFocus(true)
+        m.verticalScroller.setFocus(true)
     end if
-End Sub
-
-Sub ConfigureFeaturedCarouselTargetList(data as Object)
-    sizes = {
-        unfocusedWidth: 600,
-        unfocusedHeight: 337,
-        unfocusedMargin: 60,
-        focusedWidth: 800,
-        focusedHeight: 450,
-        focusedMargin: 90
-    }
-
-    focusedTargetSet = CreateObject("roSGNode", "TargetSet")
-    middleRectX = (1920 - sizes.focusedWidth) / 2
-    focusedTargetSet.targetRects = [
-        [
-            middleRectX - sizes.focusedMargin * 2 - sizes.unfocusedWidth * 2,
-            (sizes.focusedHeight - sizes.unfocusedHeight) / 2,
-            sizes.unfocusedWidth,
-            sizes.unfocusedHeight
-        ],
-        [
-            middleRectX - sizes.focusedMargin - sizes.unfocusedWidth,
-            (sizes.focusedHeight - sizes.unfocusedHeight) / 2,
-            sizes.unfocusedWidth,
-            sizes.unfocusedHeight
-        ],
-        [
-            middleRectX,
-            0,
-            sizes.focusedWidth,
-            sizes.focusedHeight
-        ],
-        [
-            middleRectX + sizes.focusedWidth + sizes.focusedMargin,
-            (sizes.focusedHeight - sizes.unfocusedHeight) / 2,
-            sizes.unfocusedWidth,
-            sizes.unfocusedHeight
-        ],
-        [
-            middleRectX + sizes.focusedWidth + sizes.focusedMargin * 2 + sizes.unfocusedWidth,
-            (sizes.focusedHeight - sizes.unfocusedHeight) / 2,
-            sizes.unfocusedWidth,
-            sizes.unfocusedHeight
-        ]
-    ]
-    m.featuredCarouselTargetList.focusedTargetSet = focusedTargetSet
-    
-    for each t in focusedTargetSet.targetRects
-        ? t
-    end for
-
-    unfocusedTargetSet = CreateObject("roSGNode", "TargetSet")
-    middleRectX = (1920 - sizes.unfocusedWidth) / 2
-    unfocusedTargetSet.targetRects = [
-        [
-            middleRectX - sizes.unfocusedMargin * 2 -sizes.unfocusedWidth * 2,
-            (sizes.focusedHeight - sizes.unfocusedHeight) / 2,
-            sizes.unfocusedWidth,
-            sizes.unfocusedHeight
-        ],
-        [
-            middleRectX - sizes.unfocusedMargin -sizes.unfocusedWidth,
-            (sizes.focusedHeight - sizes.unfocusedHeight) / 2,
-            sizes.unfocusedWidth,
-            sizes.unfocusedHeight
-        ],
-        [
-            middleRectX,
-            (sizes.focusedHeight - sizes.unfocusedHeight) / 2,
-            sizes.unfocusedWidth,
-            sizes.unfocusedHeight
-        ],
-        [
-            middleRectX + sizes.unfocusedWidth + sizes.unfocusedMargin,
-            (sizes.focusedHeight - sizes.unfocusedHeight) / 2,
-            sizes.unfocusedWidth,
-            sizes.unfocusedHeight
-        ],
-        [
-            middleRectX + sizes.unfocusedWidth * 2 + sizes.unfocusedMargin * 2,
-            (sizes.focusedHeight - sizes.unfocusedHeight) / 2,
-            sizes.unfocusedWidth,
-            sizes.unfocusedHeight
-        ]
-    ]
-    m.featuredCarouselTargetList.unfocusedTargetSet = unfocusedTargetSet
-
-    m.featuredCarouselTargetList.targetSet = focusedTargetSet
-    ' m.featuredCarouselTargetList.showTargetRects = true
-
-    for each channel in data.channels
-        channel.streamThumbnailSmall = "https://thumbs.mixer.com/channel/" + channel.id.ToStr() + ".small.jpg"
-        channel.streamThumbnailLarge = "https://thumbs.mixer.com/channel/" + channel.id.ToStr() + ".big.jpg"
-        node = CreateObject("roSGNode", "ContentNode")
-        node.addFields(channel)
-        m.featuredCarouselTargetListContent.appendChild(node)
-    end for
 End Sub
 
 Sub FetchData()
     m.fetchDataTries += 1
-
-    ? "FETCH TRY "; m.fetchDataTries
 
     params = "hydrate=true"
     if m.global.auth.user_id <> "" and m.fetchDataTries < 3
         params += "&userId=" + m.global.auth.user_id
     end if
 
-    MakeGETRequest("https://mixer.com/api/v1/delve/home?" + params, "JsonTransformer", "FetchDataCallback")
+    MakeGETRequest("https://mixer.com/api/v1/delve/home?" + params, "DevelResponseTransformer", "FetchDataCallback")
 End Sub
 
 Sub FetchDataCallback(event as Object)
@@ -135,13 +32,51 @@ Sub FetchDataCallback(event as Object)
     if response.code = 403
         m.global.uriFetcher.observeFieldScoped("tokenRefreshed", "OnTokenRefreshed")
         m.global.uriFetcher.refreshToken = true
-    else
-        ? response.transformedResponse
-        for each item in response.transformedResponse.rows
-            if item.type = "carousel"
-                ConfigureFeaturedCarouselTargetList(item)
+    else if response.transformedResponse <> invalid
+        rowLists = []
+
+        for each child in response.transformedResponse.getChildren(-1, 0)
+            rowList = invalid
+
+            if child.rowStyle = "carouselChannels"
+                rowList = CreateRowList("ChannelsCarouselFeaturedRowListItem", {
+                    "itemSize": [1784, 430],
+                    "rowItemSize": [[620, 349]],
+                    "rowItemFocusSize": [[620, 349]]
+                })
+            else if child.rowStyle = "partnerChannels"
+                rowList = CreateRowList("ChannelsPartnerFeaturedRowListItem", {
+                    "itemSize": [1784, 481],
+                    "rowItemSize": [[280, 400]],
+                    "rowItemFocusSize": [[280, 400]]
+                })
+            else if child.rowStyle = "channels"
+                items = child.getChild(0)
+                for i = items.getChildCount() - 1 to 0 step -1
+                    if items.getChild(i).online = false
+                        items.removeChildIndex(i)
+                    end if
+                end for
+                rowList = CreateRowList("ChannelsFeaturedRowListItemLive", {
+                    "itemSize": [1784, 583],
+                    "rowItemSize": [[564, 502]],
+                    "rowItemFocusSize": [[564, 318]]
+                })
+            else if child.rowStyle = "games"
+                rowList = CreateRowList("GamesFeaturedRowListItem", {
+                    "itemSize": [1784, 480],
+                    "rowItemSize": [[300, 399]],
+                    "rowItemFocusSize": [[300, 300]]
+                })
+            end if
+
+            if rowList <> invalid
+                rowList.content = child
+                rowLists.Push(rowList)
             end if
         end for
+
+        m.verticalScroller.addChildren = rowLists
     end if
     
     m.top.contentSet = true
@@ -150,4 +85,51 @@ End Sub
 Sub OnTokenRefreshed(event as Object)
     m.global.uriFetcher.unobserveFieldScoped("tokenRefreshed")
     FetchData()
+End Sub
+
+Function CreateRowList(componentName as String, fields as Object) as Object
+    font = CreateObject("roSGNode", "Font")
+    font.uri = "pkg:/fonts/Rajdhani-Bold.ttf"
+    font.size = 40
+
+    rowList = CreateObject("roSGNode", "EnhancedRowList")
+    rowList.setFields({
+        "itemComponentName": componentName,
+        "rowFocusAnimationStyle": "floatingFocus",
+        "showRowLabel": [true],
+        "rowItemSpacing": [[48, 0]],
+        "numRows": 1,
+        "focusBitmapUri": "pkg:/images/rounded_focus_$$RES$$.9.png",
+        "rowLabelColor": "0xDBDBDB",
+        "wrapDividerBitmapUri": "",
+        "focusXOffset": [60],
+        "rowLabelOffset": [[60, 30]],
+        "rowLabelFont": font
+    })
+    rowList.setFields(fields)
+    rowList.observeField("rowItemSelected", "OnRowItemSelected")
+    return rowList
+End Function
+
+Sub OnRowItemSelected(event as Object)
+    index = event.getData()
+    node = event.getRoSGNode()
+    rowStyle = node.content.rowStyle
+
+    if rowStyle = invalid then return
+
+    item = node.content.getChild(index[0]).getChild(index[1])
+
+    if item = invalid or item.model_id = invalid then return
+
+    if rowStyle = "carouselChannels" or rowStyle = "channels" or rowStyle = "partnerChannels"
+        m.global.route = "/stream/" + item.model_id.ToStr()
+    else if rowStyle = "games"
+        m.global.routeWithExtra = {
+            route: "/game/" + item.model_id.ToStr(),
+            extra: {
+                modelData: item
+            }
+        }
+    end if
 End Sub

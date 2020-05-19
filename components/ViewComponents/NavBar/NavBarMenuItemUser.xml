@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<component name="NavBarMenuItemUser" extends="NavbarMenuItem">
-     <script type="text/brightscript" uri="NavBarMenuItemUser.brs"/>
-</component>

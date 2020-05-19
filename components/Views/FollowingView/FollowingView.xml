@@ -8,6 +8,7 @@
             height="156" />
         <EnhancedMarkupGrid
             id="FollowingGridList"
+            itemComponentName="DynamicItemComponent"
             itemSize="[528, 500]"
             itemSpacing="[40, 105]"
             focusSize="[528, 297]"
@@ -21,10 +22,11 @@
         <SimpleLabel
             id="NotLoggedInLabel"
             text="Your followed channels will appear here after you log in"
-            vertOrigin="center"
-            horizOrigin="center"
+            fontUri="pkg:/fonts/Rajdhani-Regular.ttf"
+            fontSize="50"
+            color="0xE9E9E9"
             visible="false"
-            translation="[960, 498]" />
+            translation="[60, 243]" />
     </children>
     <script type="text/brightscript" uri="FollowingView.brs" />
     <script type="text/brightscript" uri="pkg:/components/AuthMixin.brs" />

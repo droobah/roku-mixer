@@ -1,6 +1,5 @@
 Sub Init()
-    ' ? "[ChannelItemOffline] Init()"
-    m.top.opacity = 0.6
+    ' ? "[ChannelsFeaturedRowListItemOffline] Init()"
 
     m.backgroundPoster = m.top.findNode("BackgroundPoster")
     m.avatarPoster = m.top.findNode("AvatarPoster")
@@ -12,6 +11,10 @@ Sub Init()
     ' correctly set rounded maskgroup for 720p UI devices
     maskSize = doScale(160, m.global.scaleFactor)
     m.roundedMaskGroup.maskSize = [maskSize, maskSize]
+
+    m.top.observeField("width", "WidthChanged")
+    m.top.observeField("height", "HeightChanged")
+    m.top.observeField("itemContent", "ContentChanged")
 End Sub
 
 Sub WidthChanged(event as Object)
@@ -43,27 +46,6 @@ Sub ContentChanged(event as Object)
     else
         m.gameLabel.text = ""
     end if
-End Sub
-
-Sub GridFocusChanged()
-    if not m.top.gridHasFocus and m.top.focusPercent > 0.0
-        m.top.opacity = 0.6
-    end if
-End Sub
-
-Sub ItemFocusChanged(event as Object)
-    hasFocus = event.getData()
-
-    if hasFocus
-        m.top.opacity = 1
-    end if
-End Sub
-
-Sub ShowFocus(event as Object)
-    if not m.top.gridHasFocus then return
-
-    percent = event.getData()
-    m.top.opacity = percent / 2.5 + 0.6
 End Sub
 
 Function doScale(number as Integer, scaleFactor as Integer) as Integer

@@ -31,13 +31,9 @@ Sub OnItemSelected(event as Object)
     index = event.getData()
     item = m.followingGridListContent.getChild(index)
 
-    if item <> invalid and item.model_id <> invalid and item.online = true
-        PlayLiveStream(item.model_id)
+    if item <> invalid and item.model_id <> invalid
+        m.global.route = "/stream/" + item.model_id.ToStr()
     end if
-End Sub
-
-Sub OnPlayerDestroyed()
-    m.followingGridList.setFocus(true)
 End Sub
 
 Sub FetchData()
@@ -55,6 +51,17 @@ Sub FetchDataCallback(event as Object)
 
     if response.transformedResponse <> invalid
         responseItems = response.transformedResponse.getChildren(-1, 0)
+
+        for each item in responseItems
+            listItemComponentName = "ChannelsMarkupGridItemLive"
+            if item.online = invalid or item.online = false
+                listItemComponentName = "ChannelsMarkupGridItemOffline"
+            end if
+            item.addFields({
+                dynamicComponentName: listItemComponentName
+            })
+        end for
+
         if responseItems.Count() < m.perPage then hasNextPage = false
         m.followingGridListContent.appendChildren(responseItems)
 

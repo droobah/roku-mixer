@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="DiscoverView" extends="BaseView">
     <children>
-        <TargetList
-            id="FeaturedCarouselTargetList"
-            itemComponentName="FeaturedCarouselItemComponent"
-            easeFunction="inOutQuad"
-            defaultTargetSetFocusIndex="2"
-            advanceKey="right"
-            reverseKey="left"
-            wrap="true" />
+        <PageHeader
+            backgroundUri="pkg:/images/page_header_background.png"
+            title="Discover"
+            width="1784"
+            height="156" />
+
+        <VerticalScroller
+            id="VerticalScroller"
+            itemSpacing="[110]"
+            clippingRect="[0, 0, 1784, 882]"
+            translation="[0, 198]" />
     </children>
+
     <script type="text/brightscript" uri="DiscoverView.brs"/>
+    <script type="text/brightscript" uri="pkg:/components/Network/ResponseTransformers.brs" />
 </component>
