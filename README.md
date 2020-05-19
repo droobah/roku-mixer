@@ -1,4 +1,4 @@
-#### Beta channel
+#### Install channel here
 <https://my.roku.com/add/6QRRQVV>
 
 #### To Run:
