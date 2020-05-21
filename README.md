@@ -1,6 +1,9 @@
 #### Install channel here
 <https://my.roku.com/add/6QRRQVV>
 
+#### Discord
+<https://discord.gg/zjGx2g9>
+
 #### To Run:
 
 1. Enable Developer Mode on your Roku
